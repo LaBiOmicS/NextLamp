@@ -109,6 +109,12 @@ def generate_default_config_yaml(out_path: str):
 
 # --- Inputs & Outputs ---
 target_fasta: "data/target_babesia_canis.fa"
+# Specify a single index prefix or a list of segmented index prefixes for sequential early-exit filtering:
+# index_prefix:
+#   - "data/indexes/idx_dog"
+#   - "data/indexes/idx_cat"
+#   - "data/indexes/idx_ticks"
+#   - "data/indexes/idx_apicomplexa"
 index_prefix: "data/db_completo_idx"
 targets_list: "data/targets_list.txt"
 background_list: "data/background_list.txt"

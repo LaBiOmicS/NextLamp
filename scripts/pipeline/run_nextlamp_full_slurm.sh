@@ -1,11 +1,11 @@
 #!/bin/bash
 #SBATCH --job-name=nextlamp_full
-#SBATCH --partition=fast,long
+#SBATCH --partition=medium,long
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
-#SBATCH --mem=32G
-#SBATCH --time=1-00:00:00
+#SBATCH --cpus-per-task=16
+#SBATCH --mem=64G
+#SBATCH --time=2-00:00:00
 #SBATCH --output=/home/fabiano.menegidio/workdir/Omics/genomics/babesia/logs/slurm_nextlamp_full_%j.log
 #SBATCH --error=/home/fabiano.menegidio/workdir/Omics/genomics/babesia/logs/slurm_nextlamp_full_%j.err
 

@@ -68,15 +68,20 @@ nextlamp --config my_design.yaml
 ```python
 from nextlamp import NextLampPipeline, export_results
 
-# 1. Initialize the pipeline
+# 1. Initialize the pipeline with segmented indices for hosts, vectors & background
 pipeline = NextLampPipeline(
     target_fasta="data/target_babesia_canis.fa",
-    index_prefix="data/db_completo_idx",
+    index_prefix=[
+        "data/indexes/idx_dog",
+        "data/indexes/idx_cat",
+        "data/indexes/idx_ticks",
+        "data/indexes/idx_apicomplexa"
+    ],
     targets_list_file="data/targets_list.txt",
     background_list_file="data/background_list.txt"
 )
 
-# 2. Run primer design (with 4 threads)
+# 2. Run primer design (with 4 threads and early-exit sequential screening)
 results, params, stats = pipeline.run(threads=4)
 
 # 3. Export complete FAIR reproducibility bundle (JSON, TSV for Excel, TXT)

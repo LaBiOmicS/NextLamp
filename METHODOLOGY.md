@@ -1,61 +1,70 @@
-# 🔬 Metodologia Científica: Desenho de Primers LAMP de Escala Genômica com o NextLAMP
+# 🔬 Scientific Methodology: Genome-Scale LAMP Primer Design with NextLAMP
 
-Este documento detalha a **metodologia experimental e bioinformática** para o desenho de primers de amplificação isotérmica mediada por loop (**LAMP**) e primers de **Loop** (LoopF e LoopB) direcionados ao gênero *_Babesia_* com filtragem de especificidade tripla contra hospedeiro, vetores e protozoários relacionados.
-
----
-
-## 🎯 1. Escopo e Objetivos do Ensaio
-O ensaio LAMP visa a detecção sensível e específica de espécies do gênero *_Babesia_* (*B. canis*, *B. vogeli*, *B. gibsoni*, etc.), permitindo o diagnóstico em tempo real tanto em amostras clínicas do hospedeiro vertebrado quanto em vigilância entomológica/epidemiológica direta nos carrapatos vetores.
+This document details the **experimental and bioinformatic methodology** for designing Loop-Mediated Isothermal Amplification (**LAMP**) primers and **Loop** primers (LoopF and LoopB) targeting the genus *_Babesia_* with multi-tiered specificity filtering against hosts, vectors, and related protozoa.
 
 ---
 
-## 🛡️ 2. Arquitetura do Banco de Dados de Seleção Negativa (Background)
+## 🎯 1. Scope & Assay Objectives
 
-Para garantir **zero reação cruzada** em ensaios *Point-of-Care* de campo ou extrações diretas de sangue e vetores, o banco de dados de exclusão (*background*) do NextLAMP foi estruturado em **3 pilares biológicos**:
-
-### Pillar A: Protozoários Filogeneticamente Próximos (Apicomplexa não-*Babesia*)
-Evita falsos-positivos por semelhança evolutiva com outros coccídeos e hemoparasitas:
-- *Theileria* spp.
-- *Plasmodium* spp.
-- *Toxoplasma gondii*
-- *Neospora caninum*
-- *Cryptosporidium* spp.
-- *Eimeria* spp.
-
-### Pillar B: Hospedeiro Vertebrado
-Evita ligação não-específica com a vasta quantidade de DNA genômico do hospedeiro presente nas amostras clínicas de sangue:
-- *Canis lupus familiaris* (Cão doméstico - 20 montagens de genoma do NCBI).
-
-### Pillar C: Carrapatos Vetores (Arthropoda: Ixodidae)
-Evita reação cruzada quando o teste for aplicado diretamente em homogeneizados de carrapatos coletados no campo ou na pele dos animais:
-- ***Rhipicephalus sanguineus*** (Carrapato marrom do cão - TaxID: `7469`)
-- ***Dermacentor reticulatus*** (Vetor de *B. canis* na Europa - TaxID: `160490`)
-- ***Rhipicephalus microplus*** (Carrapato do boi - TaxID: `6941`)
-- ***Ixodes scapularis*** (Carrapato ixodídeo - TaxID: `6945`)
+The LAMP assay aims for sensitive and specific detection of species within the genus *_Babesia_* (*B. canis*, *B. vogeli*, *B. gibsoni*, etc.), enabling real-time diagnostics in vertebrate host clinical samples as well as direct entomological/epidemiological surveillance in tick vectors.
 
 ---
 
-## ⚙️ 3. Parâmetros Termodinâmicos e Distâncias Espaciais
+## 🛡️ 2. Segmented Database Architecture & Early-Exit Filtering
 
-O algoritmo **NextLAMP** avalia simultaneamente 8 oligonucleotídeos por conjunto (F3, F2, F1c, LoopF, B1c, LoopB, B2, B3) sob as seguintes restrições:
+To guarantee **zero cross-reactivity** in field Point-of-Care (PoC) assays or direct blood/vector extractions without processing giant monolithic files, NextLAMP's background exclusion database is structured into **segmented, independent database modules**:
 
-| Parâmetro / Oligonucletídeo | Faixa Aceita / Limiar | Função Biológica |
+### Pillar A: Vertebrate Hosts & Clinical Contaminants (Modular Indices)
+Prevents non-specific binding with host genomic DNA and common kit/handling contaminants in blood and tissue samples:
+- ***Canis lupus familiaris*** (`idx_dog` - Domestic Dog, RefSeq `GCF_011100685.1`)
+- ***Felis catus*** (`idx_cat` - Domestic Cat)
+- ***Homo sapiens*** (`idx_human` - Human Reference Genome GRCh38.p14)
+
+### Pillar B: Tick Vectors (Vector Index - Ixodidae)
+Prevents cross-reactivity in tick homogenates collected in the field or directly from animal skin:
+- ***Rhipicephalus sanguineus***, ***Dermacentor reticulatus***, ***Rhipicephalus microplus***, ***Ixodes scapularis*** (`idx_ticks`)
+
+### Pillar C: Phylogenetically Related Protozoa (Apicomplexa Index)
+Prevents false positives due to evolutionary conservation with other hemoparasites and coccidia:
+- *Theileria* spp., *Plasmodium* spp., *Toxoplasma gondii*, *Neospora caninum*, *Cryptosporidium* spp., *Eimeria* spp. (`idx_apicomplexa`)
+
+### ⚡ Sequential Early-Exit Filtering
+NextLAMP evaluates these indices sequentially using **early-exit short-circuiting**: if a candidate primer collides with the dog, cat, or human host genome in an early index, it is immediately discarded from the pipeline. This saves computational time and maintains a minimal RAM footprint (<500 MB).
+
+---
+
+## ⚙️ 3. Thermodynamic Parameters & Spatial Distance Constraints
+
+The **NextLAMP** algorithm evaluates 8 oligonucleotides per candidate set (F3, F2, F1c, LoopF, B1c, LoopB, B2, B3) under the following constraints:
+
+| Parameter / Oligonucleotide | Accepted Range / Threshold | Biological Function |
 | :--- | :---: | :--- |
-| **Temperatura de Anelamento (\(Tm\))** | \(55.0^\circ\text{C} - 68.0^\circ\text{C}\) | Faixa ideal para reação isotérmica com *Bst* Polymerase |
-| **Conteúdo de GC (\(GC\%\))** | \(30.0\% - 70.0\%\) | Estabilidade da dupla fita |
-| **Balanço Termodinâmico (\(Tm_{\text{balance}}\))** | Minimizar \(|Tm(F2)-Tm(B2)| + |Tm(F3)-Tm(B3)|\) | Amplificação simétrica e eficiente das duas fitas |
-| **Distância F3 → F2** | \(0 - 20\text{ bp}\) | Região de clivagem e deslocamento da fita externa |
-| **Distância F2 → F1c** | \(40 - 60\text{ bp}\) | Formação da alça da estrutura *dumbbell* |
-| **Tamanho do Amplicon Interno (F2 → B2)** | \(120 - 180\text{ bp}\) | Região central de amplificação isotérmica |
-| **Distância B1c → B2** | \(40 - 60\text{ bp}\) | Formação da alça direita do *dumbbell* |
-| **Distância B2 → B3** | \(0 - 20\text{ bp}\) | Deslocamento da fita externa direita |
-| **Primers de Loop (LoopF / LoopB)** | Regiões entre F1-F2 e B1-B2 | Aceleração da reação (amplificação em < 20 min) |
+| **Melting Temperature (\(T_m\))** | \(55.0^\circ\text{C} - 68.0^\circ\text{C}\) | Optimal isothermal reaction range for *Bst* Polymerase |
+| **GC Content (\(GC\%\))** | \(30.0\% - 70.0\%\) | Duplex stability |
+| **Thermodynamic Balance (\(T_{m\text{ balance}}\))** | Minimize \(|T_m(F2)-T_m(B2)| + |T_m(F3)-T_m(B3)|\) | Symmetric and efficient amplicon synthesis |
+| **Distance F3 → F2** | \(0 - 20\text{ bp}\) | Cleavage & displacement region for outer primer |
+| **Distance F2 → F1c** | \(40 - 60\text{ bp}\) | Dumbbell loop structure formation |
+| **Core Amplicon Size (F2 → B2)** | \(120 - 180\text{ bp}\) | Core isothermal amplification region |
+| **Distance B1c → B2** | \(40 - 60\text{ bp}\) | Right dumbbell loop structure formation |
+| **Distance B2 → B3** | \(0 - 20\text{ bp}\) | Right outer strand displacement |
+| **Loop Primers (LoopF / LoopB)** | Regions between F1-F2 and B1-B2 | Reaction acceleration (amplification in < 20 min) |
 
 ---
 
-## ⚡ 4. Mecanismo de Alinhamento e Proveniência FAIR
+## 🎯 4. Pan-Genome Target Conservation
 
-1. **Geração de Candidatos:** Varredura em janela deslizante no genoma modelo de *_Babesia_* identificando milhões de sequências viáveis.
-2. **Filtragem de Especificidade via Bowtie 2:** Alinhamento paralelo contra o banco completo de 16.2 GB (Apicomplexa + Cão + Carrapatos) descartando candidatos com pareamentos imprecisos ou não-específicos.
-3. **Deduplicação de Locus:** Eliminação de conjuntos redundantes para garantir cobertura espacial ampla de marcadores genômicos únicos.
-4. **Relatório FAIR:** Exportação em JSON (hash SHA-256 do genoma alvo e parâmetros), TSV (pronto para pedido em laboratório) e TXT (interpretação rápida).
+Instead of synthesizing a simple consensus sequence (which introduces IUPAC degenerate bases and reduces isothermal reaction sensitivity), NextLAMP implements **exact pan-genome target validation**:
+
+1. **Initial Candidate Generation:** Raw candidate primers are generated from a high-quality complete reference genome (`target_fasta`).
+2. **100% Pan-Coverage Validation:** During Bowtie 2 alignment against target accessions (`targets_list.txt`), each candidate primer is tested individually against all target assemblies.
+3. **Full Match Threshold:** A candidate primer is accepted if and only if it exhibits an **exact match (0 mismatches) across 100% of the target genomes** listed.
+4. **Biological Advantage:** Guarantees that designed primers are 100% conserved across all known pathogen isolates without requiring degenerate primers.
+
+---
+
+## ⚡ 5. Alignment Mechanism & FAIR Provenance
+
+1. **Candidate Scanning:** Sliding-window evaluation across the reference genome, identifying viable kmers meeting thermodynamic constraints.
+2. **Multi-Index Specificity Filtering:** Sequential early-exit Bowtie 2 alignment against segmented host, vector, and background indices, discarding non-specific candidates.
+3. **Locus Deduplication:** Removal of spatial overlap redundancies to ensure broad coverage of unique genomic loci.
+4. **FAIR Export Bundle:** Immutable export including JSON (SHA-256 target hash, parameter audit log), TSV (ready for laboratory ordering), and TXT (summary report).

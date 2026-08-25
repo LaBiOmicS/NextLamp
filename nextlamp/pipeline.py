@@ -7,9 +7,12 @@ from .alignment import filter_by_specificity
 from .combination import assemble_sets
 
 class NextLampPipeline:
-    def __init__(self, target_fasta: str, index_prefix: str, targets_list_file: str, background_list_file: str, bowtie2_path: str = None):
+    def __init__(self, target_fasta: str, index_prefix: str | list[str], targets_list_file: str, background_list_file: str, bowtie2_path: str = None):
         self.target_fasta = os.path.abspath(target_fasta)
-        self.index_prefix = os.path.abspath(index_prefix)
+        if isinstance(index_prefix, list):
+            self.index_prefix = [os.path.abspath(p) for p in index_prefix]
+        else:
+            self.index_prefix = os.path.abspath(index_prefix)
         
         # Dynamic auto-detection of bowtie2 binary
         if not bowtie2_path:
