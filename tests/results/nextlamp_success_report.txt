@@ -1,0 +1,111 @@
+========================================================================
+  NextLAMP: Whole-Genome LAMP Primer Design Report
+========================================================================
+
+Execution Date:       2026-08-21T09:10:27.076818
+Target FASTA:         /home/fabiano.menegidio/workdir/Omics/genomics/babesia/tests/data/target.fa
+Target SHA256:        d38268fd5757b5f63d49c0f7015e69e28b936ce0f8ca194b61c4462c42bebb31
+Target Genomes:       1
+Background Genomes:   2
+Threads Used:         4
+
+--- Design Parameters ---
+  GC Content Range:   30.0% - 70.0%
+  Tm Range:           55.0°C - 68.0°C
+  F3-F2 Distance:     0 - 20 bp
+  F2-F1c Distance:    40 - 60 bp
+  F2-B2 Amplicon:     120 - 180 bp
+  B1c-B2 Distance:    40 - 60 bp
+  B2-B3 Distance:     0 - 20 bp
+  Dimers Filtered:    True
+
+--- Selection Funnel Statistics ---
+  Raw Candidates Generated:     F3/B3=49094, F2/B2=56680, F1c/B1c=67994
+  Specific Candidates Passed:    F3/B3=49090, F2/B2=56676, F1c/B1c=67994
+  Final Designed Sets Output:    10
+
+========================================================================
+  Designed LAMP Primer Sets (Ranked by Thermal Balance)
+========================================================================
+
+[SET #1] Quality: Good | Tm Balance Score: 2.0012
+  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  B1c:  5'- GTGTTGCGTTCACATTGTTCTC -3'  (pos: 112, Tm: 60.5°C, GC: 45.5%)
+  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
+  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+
+[SET #2] Quality: Good | Tm Balance Score: 2.0012
+  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  B1c:  5'- GTGTTGCGTTCACATTGTTCTCAG -3'  (pos: 112, Tm: 62.9°C, GC: 45.8%)
+  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
+  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+
+[SET #3] Quality: Good | Tm Balance Score: 2.0012
+  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  B1c:  5'- GTTGCGTTCACATTGTTCTCAG -3'  (pos: 114, Tm: 60.3°C, GC: 45.5%)
+  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
+  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+
+[SET #4] Quality: Good | Tm Balance Score: 2.0012
+  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  B1c:  5'- GTTGCGTTCACATTGTTCTCAGTC -3'  (pos: 114, Tm: 62.7°C, GC: 45.8%)
+  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
+  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+
+[SET #5] Quality: Good | Tm Balance Score: 2.0012
+  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  B1c:  5'- TGCGTTCACATTGTTCTCAGTC -3'  (pos: 116, Tm: 61.1°C, GC: 45.5%)
+  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
+  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+
+[SET #6] Quality: Good | Tm Balance Score: 2.0012
+  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  B1c:  5'- CGTTCACATTGTTCTCAGTCCT -3'  (pos: 118, Tm: 60.2°C, GC: 45.5%)
+  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
+  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+
+[SET #7] Quality: Good | Tm Balance Score: 2.0012
+  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  B1c:  5'- CGTTCACATTGTTCTCAGTCCTGT -3'  (pos: 118, Tm: 63.0°C, GC: 45.8%)
+  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
+  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+
+[SET #8] Quality: Good | Tm Balance Score: 2.9030
+  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  B1c:  5'- GTGTTGCGTTCACATTGTTCTCAG -3'  (pos: 112, Tm: 62.9°C, GC: 45.8%)
+  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
+  B3:   5'- CGATGAGCTGCAACAAAACA -3'  (pos: 198, Tm: 59.1°C, GC: 45.0%)
+
+[SET #9] Quality: Good | Tm Balance Score: 2.9030
+  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  B1c:  5'- GTTGCGTTCACATTGTTCTCAGTC -3'  (pos: 114, Tm: 62.7°C, GC: 45.8%)
+  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
+  B3:   5'- CGATGAGCTGCAACAAAACA -3'  (pos: 198, Tm: 59.1°C, GC: 45.0%)
+
+[SET #10] Quality: Good | Tm Balance Score: 2.9030
+  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  B1c:  5'- CGTTCACATTGTTCTCAGTCCTGT -3'  (pos: 118, Tm: 63.0°C, GC: 45.8%)
+  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
+  B3:   5'- CGATGAGCTGCAACAAAACA -3'  (pos: 198, Tm: 59.1°C, GC: 45.0%)
+
+========================================================================

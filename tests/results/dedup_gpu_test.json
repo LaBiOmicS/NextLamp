@@ -1,0 +1,587 @@
+{
+    "metadata": {
+        "tool": "NextLAMP",
+        "version": "1.0.0",
+        "timestamp": "2026-08-21T09:18:26.064578",
+        "reproducibility": {
+            "target_fasta": "/home/fabiano.menegidio/workdir/Omics/genomics/babesia/tests/data/target.fa",
+            "target_fasta_sha256": "d38268fd5757b5f63d49c0f7015e69e28b936ce0f8ca194b61c4462c42bebb31",
+            "bowtie2_path": "/home/fabiano.menegidio/miniforge3/envs/humann3_env/bin/bowtie2",
+            "index_prefix": "/home/fabiano.menegidio/workdir/Omics/genomics/babesia/tests/data/bt2_idx",
+            "targets_count": 1,
+            "backgrounds_count": 2
+        },
+        "parameters": {
+            "target_fasta": "/home/fabiano.menegidio/workdir/Omics/genomics/babesia/tests/data/target.fa",
+            "bowtie2_path": "/home/fabiano.menegidio/miniforge3/envs/humann3_env/bin/bowtie2",
+            "index_prefix": "/home/fabiano.menegidio/workdir/Omics/genomics/babesia/tests/data/bt2_idx",
+            "targets": [
+                "CM098081.1"
+            ],
+            "backgrounds": [
+                "CM002034.1",
+                "CM002035.1"
+            ],
+            "max_sets": 10,
+            "min_gc": 30.0,
+            "max_gc": 70.0,
+            "min_tm": 55.0,
+            "max_tm": 68.0,
+            "min_dist_f3_f2": 0,
+            "max_dist_f3_f2": 20,
+            "min_dist_f2_f1c": 40,
+            "max_dist_f2_f1c": 60,
+            "min_dist_inner": 120,
+            "max_dist_inner": 180,
+            "min_dist_b1c_b2": 40,
+            "max_dist_b1c_b2": 60,
+            "min_dist_b2_b3": 0,
+            "max_dist_b2_b3": 20,
+            "max_dist_f1c_b1c": 85,
+            "min_tm_diff_f1c_b1c": 3.0,
+            "check_dimers": true,
+            "threads": 4
+        },
+        "statistics": {
+            "raw_F3_B3": 49094,
+            "raw_F2_B2": 56680,
+            "raw_F1c_B1c": 67994,
+            "filt_F3_B3": 49090,
+            "filt_F2_B2": 56676,
+            "filt_F1c_B1c": 67994
+        },
+        "designed_sets_count": 10
+    },
+    "primer_sets": [
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0
+            },
+            "F1c": {
+                "seq": "GTTGAAAACGGCAAATAGACAAAGAA",
+                "start": 64,
+                "end": 90,
+                "strand": -1,
+                "tm": 61.229475206282416,
+                "gc": 34.61538461538461
+            },
+            "B1c": {
+                "seq": "GCAGTTTCATAGCTTACAAGATGTGT",
+                "start": 90,
+                "end": 116,
+                "strand": 1,
+                "tm": 61.84733092166334,
+                "gc": 38.46153846153847
+            },
+            "B2": {
+                "seq": "CCGAGAAATGCACAACAC",
+                "start": 140,
+                "end": 158,
+                "strand": -1,
+                "tm": 55.91782152460581,
+                "gc": 50.0
+            },
+            "B3": {
+                "seq": "CGGAACTCATCATCAAGGTT",
+                "start": 168,
+                "end": 188,
+                "strand": -1,
+                "tm": 57.03175210623067,
+                "gc": 45.0
+            },
+            "tm_balance": 0.81,
+            "quality": "Excellent",
+            "rank": 1
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0
+            },
+            "F1c": {
+                "seq": "GTTGAAAACGGCAAATAGACAAAGAA",
+                "start": 64,
+                "end": 90,
+                "strand": -1,
+                "tm": 61.229475206282416,
+                "gc": 34.61538461538461
+            },
+            "B1c": {
+                "seq": "GCAGTTTCATAGCTTACAAGATGTGT",
+                "start": 90,
+                "end": 116,
+                "strand": 1,
+                "tm": 61.84733092166334,
+                "gc": 38.46153846153847
+            },
+            "B2": {
+                "seq": "GTCCGAGAAATGCACAAC",
+                "start": 142,
+                "end": 160,
+                "strand": -1,
+                "tm": 55.60463513402658,
+                "gc": 50.0
+            },
+            "B3": {
+                "seq": "CGGAACTCATCATCAAGGTT",
+                "start": 168,
+                "end": 188,
+                "strand": -1,
+                "tm": 57.03175210623067,
+                "gc": 45.0
+            },
+            "tm_balance": 1.1232,
+            "quality": "Excellent",
+            "rank": 2
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0
+            },
+            "F1c": {
+                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
+                "start": 82,
+                "end": 110,
+                "strand": -1,
+                "tm": 63.1261172088108,
+                "gc": 35.714285714285715
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTC",
+                "start": 112,
+                "end": 134,
+                "strand": 1,
+                "tm": 60.549555473870896,
+                "gc": 45.45454545454545
+            },
+            "B2": {
+                "seq": "GAACTCATCATCAAGGTTGC",
+                "start": 166,
+                "end": 186,
+                "strand": -1,
+                "tm": 56.22743730532278,
+                "gc": 45.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 1.7112,
+            "quality": "Excellent",
+            "rank": 3
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0
+            },
+            "F1c": {
+                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
+                "start": 82,
+                "end": 110,
+                "strand": -1,
+                "tm": 63.1261172088108,
+                "gc": 35.714285714285715
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTC",
+                "start": 112,
+                "end": 134,
+                "strand": 1,
+                "tm": 60.549555473870896,
+                "gc": 45.45454545454545
+            },
+            "B2": {
+                "seq": "GGCGGAACTCATCATCAA",
+                "start": 172,
+                "end": 190,
+                "strand": -1,
+                "tm": 56.19304278731266,
+                "gc": 50.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 1.7456,
+            "quality": "Excellent",
+            "rank": 4
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0
+            },
+            "F1c": {
+                "seq": "GTTGAAAACGGCAAATAGACAAAGAA",
+                "start": 64,
+                "end": 90,
+                "strand": -1,
+                "tm": 61.229475206282416,
+                "gc": 34.61538461538461
+            },
+            "B1c": {
+                "seq": "TGCGTTCACATTGTTCTCAGTCCTGT",
+                "start": 116,
+                "end": 142,
+                "strand": 1,
+                "tm": 66.68315775286862,
+                "gc": 46.15384615384615
+            },
+            "B2": {
+                "seq": "CGGAACTCATCATCAAGGTT",
+                "start": 168,
+                "end": 188,
+                "strand": -1,
+                "tm": 57.03175210623067,
+                "gc": 45.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 1.8461,
+            "quality": "Excellent",
+            "rank": 5
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0
+            },
+            "F1c": {
+                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
+                "start": 82,
+                "end": 110,
+                "strand": -1,
+                "tm": 63.1261172088108,
+                "gc": 35.714285714285715
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTC",
+                "start": 112,
+                "end": 134,
+                "strand": 1,
+                "tm": 60.549555473870896,
+                "gc": 45.45454545454545
+            },
+            "B2": {
+                "seq": "ATGGCGGAACTCATCATC",
+                "start": 174,
+                "end": 192,
+                "strand": -1,
+                "tm": 55.93744552142164,
+                "gc": 50.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 2.0012,
+            "quality": "Good",
+            "rank": 6
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "TACACCAGTGATGCCTACAA",
+                "start": 24,
+                "end": 44,
+                "strand": 1,
+                "tm": 57.77998907996971,
+                "gc": 45.0
+            },
+            "F1c": {
+                "seq": "TGTAAGCTATGAAACTGCGTTGAA",
+                "start": 84,
+                "end": 108,
+                "strand": -1,
+                "tm": 60.92657124963671,
+                "gc": 37.5
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
+                "start": 112,
+                "end": 136,
+                "strand": 1,
+                "tm": 62.94590057604802,
+                "gc": 45.83333333333333
+            },
+            "B2": {
+                "seq": "CGGAACTCATCATCAAGGTT",
+                "start": 168,
+                "end": 188,
+                "strand": -1,
+                "tm": 57.03175210623067,
+                "gc": 45.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 2.1247,
+            "quality": "Good",
+            "rank": 7
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "TACACCAGTGATGCCTACAA",
+                "start": 24,
+                "end": 44,
+                "strand": 1,
+                "tm": 57.77998907996971,
+                "gc": 45.0
+            },
+            "F1c": {
+                "seq": "TGTAAGCTATGAAACTGCGTTGAA",
+                "start": 84,
+                "end": 108,
+                "strand": -1,
+                "tm": 60.92657124963671,
+                "gc": 37.5
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
+                "start": 112,
+                "end": 136,
+                "strand": 1,
+                "tm": 62.94590057604802,
+                "gc": 45.83333333333333
+            },
+            "B2": {
+                "seq": "GAACTCATCATCAAGGTTGC",
+                "start": 166,
+                "end": 186,
+                "strand": -1,
+                "tm": 56.22743730532278,
+                "gc": 45.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 2.929,
+            "quality": "Good",
+            "rank": 8
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "TACACCAGTGATGCCTACAA",
+                "start": 24,
+                "end": 44,
+                "strand": 1,
+                "tm": 57.77998907996971,
+                "gc": 45.0
+            },
+            "F1c": {
+                "seq": "TGTAAGCTATGAAACTGCGTTGAA",
+                "start": 84,
+                "end": 108,
+                "strand": -1,
+                "tm": 60.92657124963671,
+                "gc": 37.5
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
+                "start": 112,
+                "end": 136,
+                "strand": 1,
+                "tm": 62.94590057604802,
+                "gc": 45.83333333333333
+            },
+            "B2": {
+                "seq": "GGCGGAACTCATCATCAA",
+                "start": 172,
+                "end": 190,
+                "strand": -1,
+                "tm": 56.19304278731266,
+                "gc": 50.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 2.9634,
+            "quality": "Good",
+            "rank": 9
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "TACACCAGTGATGCCTACAA",
+                "start": 24,
+                "end": 44,
+                "strand": 1,
+                "tm": 57.77998907996971,
+                "gc": 45.0
+            },
+            "F1c": {
+                "seq": "TGTAAGCTATGAAACTGCGTTGAA",
+                "start": 84,
+                "end": 108,
+                "strand": -1,
+                "tm": 60.92657124963671,
+                "gc": 37.5
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
+                "start": 112,
+                "end": 136,
+                "strand": 1,
+                "tm": 62.94590057604802,
+                "gc": 45.83333333333333
+            },
+            "B2": {
+                "seq": "ATGGCGGAACTCATCATC",
+                "start": 174,
+                "end": 192,
+                "strand": -1,
+                "tm": 55.93744552142164,
+                "gc": 50.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 3.219,
+            "quality": "Good",
+            "rank": 10
+        }
+    ]
+}

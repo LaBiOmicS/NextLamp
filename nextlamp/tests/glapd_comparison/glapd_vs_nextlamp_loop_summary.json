@@ -1,0 +1,23 @@
+{
+    "timestamp": "2026-08-24T21:41:14.421231",
+    "parallel_total_elapsed": 1595.61,
+    "glapd": {
+        "execution_time": 1595.6,
+        "sets_count": 10,
+        "unique_oligos": 60,
+        "unique_loops": 0
+    },
+    "nextlamp": {
+        "execution_time": 38.28,
+        "sets_count": 10,
+        "unique_oligos": 24,
+        "unique_loops": 7
+    },
+    "comparison": {
+        "shared_identical_oligos": 2,
+        "shared_oligos": [
+            "ACTACACCAGTGATGCCT",
+            "GAGCCTTACAGAGTCTAAAAGT"
+        ]
+    }
+}

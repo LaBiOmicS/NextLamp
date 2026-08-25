@@ -1,0 +1,24 @@
+# ========================================================================
+#   NextLAMP Data Preparation Configuration (YAML)
+# ========================================================================
+
+out_dir: "dataset_babesia"
+threads: 4
+max_genomes_per_taxon: 20
+run_nextlamp: true
+
+# --- Option A: Specify Taxonomic Group Names or TaxIDs ---
+target_taxa:
+  - "Babesia canis"
+
+common_taxa:
+  - "Babesia"
+
+background_taxa:
+  - "Apicomplexa"
+  - "Canis lupus familiaris"
+
+# --- Option B: Specify Local Accession List Files (CSV / TSV / TXT) ---
+# targets_list: "data/targets_list.txt"
+# common_list: "data/common_list.txt"
+# background_list: "data/background_list.txt"

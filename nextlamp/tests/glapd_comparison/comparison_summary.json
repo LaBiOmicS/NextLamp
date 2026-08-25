@@ -1,0 +1,26 @@
+{
+    "glapd": {
+        "parsed_sets_count": 10,
+        "unique_oligos": 60
+    },
+    "nextlamp": {
+        "designed_sets_count": 10,
+        "unique_oligos": 17,
+        "execution_time_seconds": 14.18,
+        "stats": {
+            "raw_F3_B3": 49094,
+            "raw_F2_B2": 56680,
+            "raw_F1c_B1c": 67994,
+            "filt_F3_B3": 49090,
+            "filt_F2_B2": 56676,
+            "filt_F1c_B1c": 67994
+        }
+    },
+    "comparison": {
+        "shared_identical_oligos": 2,
+        "shared_oligos_list": [
+            "ACTACACCAGTGATGCCT",
+            "GAGCCTTACAGAGTCTAAAAGT"
+        ]
+    }
+}
