@@ -14,6 +14,8 @@ def compute_file_hash(filepath: str) -> str:
             sha256.update(chunk)
     return sha256.hexdigest()
 
+from .elamp import evaluate_primer_set_quality, simulate_elamp_amplicon
+
 def export_results(results: list[dict],
                    params: dict,
                    stats: dict,
@@ -22,10 +24,43 @@ def export_results(results: list[dict],
                    out_txt: str = None):
     """
     Exports NextLAMP design results into JSON, TSV, and Text report formats.
-    Ensures complete scientific reproducibility and biological interpretation.
+    Enriches each primer set with in silico eLAMP quality evaluation metrics.
     """
     timestamp = datetime.now().isoformat()
     target_hash = compute_file_hash(params.get("target_fasta", ""))
+
+    # Enrich results with eLAMP quality metrics
+    target_seq = ""
+    target_fasta_path = params.get("target_fasta")
+    if target_fasta_path and os.path.isfile(target_fasta_path):
+        from Bio import SeqIO
+        try:
+            record = next(SeqIO.parse(target_fasta_path, "fasta"))
+            target_seq = str(record.seq)
+        except Exception:
+            pass
+
+    for pset in results:
+        if "elamp_metrics" not in pset:
+            if target_seq:
+                flat_set = {}
+                for pname in ["F3", "F2", "F1c", "B1c", "B2", "B3"]:
+                    if pname in pset:
+                        flat_set[pname.lower()] = pset[pname]["seq"]
+                        flat_set[f"tm_{pname.lower()}"] = pset[pname]["tm"]
+                sim = simulate_elamp_amplicon(target_seq, flat_set)
+                pset["elamp_metrics"] = sim["quality_metrics"]
+                pset["elamp_amplicon"] = {
+                    "outer_size": sim["outer_amplicon_size"],
+                    "inner_size": sim["inner_amplicon_size"]
+                }
+            else:
+                flat_set = {}
+                for pname in ["F3", "F2", "F1c", "B1c", "B2", "B3"]:
+                    if pname in pset:
+                        flat_set[pname.lower()] = pset[pname]["seq"]
+                        flat_set[f"tm_{pname.lower()}"] = pset[pname]["tm"]
+                pset["elamp_metrics"] = evaluate_primer_set_quality(flat_set)
 
     metadata = {
         "tool": "NextLAMP",
@@ -58,17 +93,19 @@ def export_results(results: list[dict],
         out_tsv = f"{base}_primers.tsv"
 
     with open(out_tsv, "w") as f:
-        f.write("Rank\tQuality\tTm_Balance\tPrimer_Name\tSequence_5to3\tStart_Pos\tEnd_Pos\tLength_bp\tTm_C\tGC_percent\tStrand\n")
+        f.write("Rank\tQuality_Grade\tQuality_Score_100\tTm_Balance\tPrimer_Name\tSequence_5to3\tStart_Pos\tEnd_Pos\tLength_bp\tTm_C\tGC_percent\tStrand\n")
         for pset in results:
             rank = pset.get("rank", 0)
-            quality = pset.get("quality", "N/A")
+            metrics = pset.get("elamp_metrics", {})
+            grade = metrics.get("grade", pset.get("quality", "N/A"))
+            qscore = metrics.get("quality_score", 0.0)
             tm_bal = pset.get("tm_balance", 0.0)
 
-            for pname in ["F3", "F2", "F1c", "B1c", "B2", "B3"]:
+            for pname in ["F3", "F2", "F1c", "LoopF", "B1c", "LoopB", "B2", "B3"]:
                 if pname in pset:
                     p = pset[pname]
                     strand_str = "+" if p.get("strand", 1) == 1 else "-"
-                    f.write(f"{rank}\t{quality}\t{tm_bal}\t{pname}\t{p['seq']}\t{p['start']}\t{p['end']}\t{len(p['seq'])}\t{p['tm']}\t{p['gc']}\t{strand_str}\n")
+                    f.write(f"{rank}\t{grade}\t{qscore}\t{tm_bal}\t{pname}\t{p['seq']}\t{p['start']}\t{p['end']}\t{len(p['seq'])}\t{p['tm']}\t{p['gc']}\t{strand_str}\n")
 
     # 3. Export Formatted Summary Text Report (Human Interpretation)
     if not out_txt:
@@ -77,7 +114,7 @@ def export_results(results: list[dict],
 
     with open(out_txt, "w") as f:
         f.write("========================================================================\n")
-        f.write("  NextLAMP: Whole-Genome LAMP Primer Design Report\n")
+        f.write("  NextLAMP: Whole-Genome LAMP Primer Design Report (with eLAMP Assessment)\n")
         f.write("========================================================================\n\n")
         f.write(f"Execution Date:       {timestamp}\n")
         f.write(f"Target FASTA:         {params.get('target_fasta')}\n")
@@ -103,14 +140,16 @@ def export_results(results: list[dict],
         f.write(f"  Final Designed Sets Output:    {len(results)}\n\n")
 
         f.write("========================================================================\n")
-        f.write("  Designed LAMP Primer Sets (Ranked by Thermal Balance)\n")
+        f.write("  Designed LAMP Primer Sets (Ranked by eLAMP Quality Score)\n")
         f.write("========================================================================\n")
         for pset in results:
             rank = pset.get("rank", 0)
-            quality = pset.get("quality", "N/A")
+            metrics = pset.get("elamp_metrics", {})
+            grade = metrics.get("grade", pset.get("quality", "N/A"))
+            qscore = metrics.get("quality_score", 0.0)
             tm_bal = pset.get("tm_balance", 0.0)
 
-            f.write(f"\n[SET #{rank}] Quality: {quality} | Tm Balance Score: {tm_bal:.4f}\n")
+            f.write(f"\n[SET #{rank}] Grade: {grade} | eLAMP Score: {qscore}/100 | Tm Balance: {tm_bal:.4f}\n")
             for pname in ["F3", "F2", "F1c", "LoopF", "B1c", "LoopB", "B2", "B3"]:
                 if pname in pset:
                     p = pset[pname]
