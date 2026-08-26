@@ -39,17 +39,15 @@ echo "  Configuration file: ${CONFIG_FILE}"
 echo "  Log file: ${LOG_FILE}"
 echo "=========================================================================="
 
-BT2_IDX="${DATA_DIR}/db_completo_bt2_idx"
+INDEXES_DIR="${DATA_DIR}/indexes"
 
-# Step 1: Check / Build Bowtie 2 index for db_completo.fa
+# Step 1: Check Bowtie 2 indexes for segmented database
 echo ""
-echo "--- Step 1: Verifying Bowtie 2 Index for Complete Background Database ---"
-if [ ! -f "${BT2_IDX}.1.bt2l" ] && [ ! -f "${BT2_IDX}.1.bt2" ]; then
-    echo "Bowtie 2 index not found. Building large index for ${DATA_DIR}/db_completo.fa..."
-    ${BOWTIE2_BUILD} --large-index "${DATA_DIR}/db_completo.fa" "${BT2_IDX}"
-    echo "Index construction completed successfully."
+echo "--- Step 1: Verifying Segmented Bowtie 2 Indexes ---"
+if [ -f "${INDEXES_DIR}/idx_targets.1.bt2" ] && [ -f "${INDEXES_DIR}/idx_human.1.bt2" ]; then
+    echo "Segmented Bowtie 2 indexes verified in ${INDEXES_DIR}."
 else
-    echo "Bowtie 2 index verified (${BT2_IDX})."
+    echo "Segmented indexes missing in ${INDEXES_DIR}. Please run data prep index build."
 fi
 
 # Step 2: Execute NextLAMP Pipeline with YAML configuration
