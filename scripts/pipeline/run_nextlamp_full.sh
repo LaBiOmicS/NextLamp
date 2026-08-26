@@ -82,7 +82,7 @@ This directory contains the structured dataset and publication-ready tables for 
 
 ## Reproducibility Metadata
 - Target Sequence: `data/target_babesia_canis.fa`
-- Background DB: `data/db_completo.fa` (501 Apicomplexa, 4 Dog, 1 Cat, 21 Tick genomes)
+- Background DB: Deduplicated Segmented Multi-Index (42 Babesia Target Genomes, 164 Representative Apicomplexa Species, 4 Tick Reference Genomes, Human GRCh38, Dog, and Cat Host Genomes)
 - Tool Version: NextLAMP v1.0.0
 EOF
 
