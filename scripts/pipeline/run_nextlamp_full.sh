@@ -17,9 +17,9 @@ if [ -f "$HOME/miniforge3/etc/profile.d/conda.sh" ]; then
     conda activate ncbi_env 2>/dev/null || conda activate nextlamp 2>/dev/null || true
 fi
 
-BOWTIE2_PATH="$(which bowtie2 2>/dev/null || echo '/home/fabiano.menegidio/miniforge3/envs/ncbi_env/bin/bowtie2')"
-BOWTIE2_BUILD="$(which bowtie2-build 2>/dev/null || echo '/home/fabiano.menegidio/miniforge3/envs/ncbi_env/bin/bowtie2-build')"
-PYTHON="$(which python3 || echo '/home/fabiano.menegidio/miniforge3/bin/python')"
+BOWTIE2_PATH="/home/fabiano.menegidio/miniforge3/envs/ncbi_env/bin/bowtie2"
+BOWTIE2_BUILD="/home/fabiano.menegidio/miniforge3/envs/ncbi_env/bin/bowtie2-build"
+PYTHON="/home/fabiano.menegidio/miniforge3/bin/python"
 
 TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
 LOG_FILE="${LOGS_DIR}/nextlamp_babesia_full_${TIMESTAMP}.log"
