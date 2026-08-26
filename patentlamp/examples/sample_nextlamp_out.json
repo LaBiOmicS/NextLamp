@@ -1,0 +1,18 @@
+{
+    "metadata": {
+        "tool": "NextLAMP",
+        "version": "1.0.0"
+    },
+    "primer_sets": [
+        {
+            "F3": "GCTTGTCGTTAACTAGCG",
+            "B3": "CGATCGATCGATCGAT",
+            "F1c": "AGCTAGCTAGCTAGCTAGCT",
+            "F2": "GCTAGCTAGCTAGCTA",
+            "B1c": "TCTAGCTAGCTAGCTAGCTA",
+            "B2": "ATCGATCGATCGATCG",
+            "LoopF": "GCTAGCTAGCTA",
+            "LoopB": "TAGCTAGCTAGC"
+        }
+    ]
+}

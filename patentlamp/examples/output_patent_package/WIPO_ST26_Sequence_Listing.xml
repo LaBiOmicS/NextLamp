@@ -1,0 +1,234 @@
+<?xml version="1.0" ?>
+<ST26SequenceListing dtdVersion="1.3" fileName="WIPO_ST26_Sequence_Listing.xml" softwareName="PatentLAMP" softwareVersion="1.0.0" productionDate="2026-08-25">
+  <ApplicationIdentification>
+    <IPOfficeCode>BR</IPOfficeCode>
+    <ApplicationNumberText>PENDING</ApplicationNumberText>
+    <FilingDate>2026-08-25</FilingDate>
+  </ApplicationIdentification>
+  <ApplicantName languageCode="pt">LaBiOmicS / Universidade</ApplicantName>
+  <InventionTitle languageCode="pt">Conjunto Oligonucleotidico Sintetico para Detecçao Isotermica de Babesia canis</InventionTitle>
+  <SequenceTotalQuantity>7</SequenceTotalQuantity>
+  <SequenceData sequenceIDNumber="1">
+    <INSDSeq>
+      <INSDSeq_length>18</INSDSeq_length>
+      <INSDSeq_moltype>DNA</INSDSeq_moltype>
+      <INSDSeq_division>PAT</INSDSeq_division>
+      <INSDSeq_other-seqids/>
+      <INSDSeq_feature-table>
+        <INSDFeature>
+          <INSDFeature_key>source</INSDFeature_key>
+          <INSDFeature_location>1..18</INSDFeature_location>
+          <INSDFeature_quals>
+            <INSDQualifier>
+              <INSDQualifier_name>mol_type</INSDQualifier_name>
+              <INSDQualifier_value>other DNA</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>organism</INSDQualifier_name>
+              <INSDQualifier_value>synthetic construct</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>note</INSDQualifier_name>
+              <INSDQualifier_value>PatentLAMP Synthetic Primer F3 (Set 1)</INSDQualifier_value>
+            </INSDQualifier>
+          </INSDFeature_quals>
+        </INSDFeature>
+      </INSDSeq_feature-table>
+      <INSDSeq_sequence>gcttgtcgttaactagcg</INSDSeq_sequence>
+    </INSDSeq>
+  </SequenceData>
+  <SequenceData sequenceIDNumber="2">
+    <INSDSeq>
+      <INSDSeq_length>16</INSDSeq_length>
+      <INSDSeq_moltype>DNA</INSDSeq_moltype>
+      <INSDSeq_division>PAT</INSDSeq_division>
+      <INSDSeq_other-seqids/>
+      <INSDSeq_feature-table>
+        <INSDFeature>
+          <INSDFeature_key>source</INSDFeature_key>
+          <INSDFeature_location>1..16</INSDFeature_location>
+          <INSDFeature_quals>
+            <INSDQualifier>
+              <INSDQualifier_name>mol_type</INSDQualifier_name>
+              <INSDQualifier_value>other DNA</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>organism</INSDQualifier_name>
+              <INSDQualifier_value>synthetic construct</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>note</INSDQualifier_name>
+              <INSDQualifier_value>PatentLAMP Synthetic Primer B3 (Set 1)</INSDQualifier_value>
+            </INSDQualifier>
+          </INSDFeature_quals>
+        </INSDFeature>
+      </INSDSeq_feature-table>
+      <INSDSeq_sequence>cgatcgatcgatcgat</INSDSeq_sequence>
+    </INSDSeq>
+  </SequenceData>
+  <SequenceData sequenceIDNumber="3">
+    <INSDSeq>
+      <INSDSeq_length>42</INSDSeq_length>
+      <INSDSeq_moltype>DNA</INSDSeq_moltype>
+      <INSDSeq_division>PAT</INSDSeq_division>
+      <INSDSeq_other-seqids/>
+      <INSDSeq_feature-table>
+        <INSDFeature>
+          <INSDFeature_key>source</INSDFeature_key>
+          <INSDFeature_location>1..42</INSDFeature_location>
+          <INSDFeature_quals>
+            <INSDQualifier>
+              <INSDQualifier_name>mol_type</INSDQualifier_name>
+              <INSDQualifier_value>other DNA</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>organism</INSDQualifier_name>
+              <INSDQualifier_value>synthetic construct</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>note</INSDQualifier_name>
+              <INSDQualifier_value>PatentLAMP Synthetic Primer FIP_synthetic (Set 1)</INSDQualifier_value>
+            </INSDQualifier>
+          </INSDFeature_quals>
+        </INSDFeature>
+        <INSDFeature>
+          <INSDFeature_key>misc_feature</INSDFeature_key>
+          <INSDFeature_location>21..26</INSDFeature_location>
+          <INSDFeature_quals>
+            <INSDQualifier>
+              <INSDQualifier_name>note</INSDQualifier_name>
+              <INSDQualifier_value>Synthetic Linker (ACGTGA - Custom synthetic oligonucleotide linker (ACGTGA)) joining F1c/B1c and F2/B2</INSDQualifier_value>
+            </INSDQualifier>
+          </INSDFeature_quals>
+        </INSDFeature>
+      </INSDSeq_feature-table>
+      <INSDSeq_sequence>agctagctagctagctagctacgtgagctagctagctagcta</INSDSeq_sequence>
+    </INSDSeq>
+  </SequenceData>
+  <SequenceData sequenceIDNumber="4">
+    <INSDSeq>
+      <INSDSeq_length>42</INSDSeq_length>
+      <INSDSeq_moltype>DNA</INSDSeq_moltype>
+      <INSDSeq_division>PAT</INSDSeq_division>
+      <INSDSeq_other-seqids/>
+      <INSDSeq_feature-table>
+        <INSDFeature>
+          <INSDFeature_key>source</INSDFeature_key>
+          <INSDFeature_location>1..42</INSDFeature_location>
+          <INSDFeature_quals>
+            <INSDQualifier>
+              <INSDQualifier_name>mol_type</INSDQualifier_name>
+              <INSDQualifier_value>other DNA</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>organism</INSDQualifier_name>
+              <INSDQualifier_value>synthetic construct</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>note</INSDQualifier_name>
+              <INSDQualifier_value>PatentLAMP Synthetic Primer BIP_synthetic (Set 1)</INSDQualifier_value>
+            </INSDQualifier>
+          </INSDFeature_quals>
+        </INSDFeature>
+        <INSDFeature>
+          <INSDFeature_key>misc_feature</INSDFeature_key>
+          <INSDFeature_location>21..26</INSDFeature_location>
+          <INSDFeature_quals>
+            <INSDQualifier>
+              <INSDQualifier_name>note</INSDQualifier_name>
+              <INSDQualifier_value>Synthetic Linker (ACGTGA - Custom synthetic oligonucleotide linker (ACGTGA)) joining F1c/B1c and F2/B2</INSDQualifier_value>
+            </INSDQualifier>
+          </INSDFeature_quals>
+        </INSDFeature>
+      </INSDSeq_feature-table>
+      <INSDSeq_sequence>tctagctagctagctagctaacgtgaatcgatcgatcgatcg</INSDSeq_sequence>
+    </INSDSeq>
+  </SequenceData>
+  <SequenceData sequenceIDNumber="5">
+    <INSDSeq>
+      <INSDSeq_length>12</INSDSeq_length>
+      <INSDSeq_moltype>DNA</INSDSeq_moltype>
+      <INSDSeq_division>PAT</INSDSeq_division>
+      <INSDSeq_other-seqids/>
+      <INSDSeq_feature-table>
+        <INSDFeature>
+          <INSDFeature_key>source</INSDFeature_key>
+          <INSDFeature_location>1..12</INSDFeature_location>
+          <INSDFeature_quals>
+            <INSDQualifier>
+              <INSDQualifier_name>mol_type</INSDQualifier_name>
+              <INSDQualifier_value>other DNA</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>organism</INSDQualifier_name>
+              <INSDQualifier_value>synthetic construct</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>note</INSDQualifier_name>
+              <INSDQualifier_value>PatentLAMP Synthetic Primer LoopF (Set 1)</INSDQualifier_value>
+            </INSDQualifier>
+          </INSDFeature_quals>
+        </INSDFeature>
+      </INSDSeq_feature-table>
+      <INSDSeq_sequence>gctagctagcta</INSDSeq_sequence>
+    </INSDSeq>
+  </SequenceData>
+  <SequenceData sequenceIDNumber="6">
+    <INSDSeq>
+      <INSDSeq_length>12</INSDSeq_length>
+      <INSDSeq_moltype>DNA</INSDSeq_moltype>
+      <INSDSeq_division>PAT</INSDSeq_division>
+      <INSDSeq_other-seqids/>
+      <INSDSeq_feature-table>
+        <INSDFeature>
+          <INSDFeature_key>source</INSDFeature_key>
+          <INSDFeature_location>1..12</INSDFeature_location>
+          <INSDFeature_quals>
+            <INSDQualifier>
+              <INSDQualifier_name>mol_type</INSDQualifier_name>
+              <INSDQualifier_value>other DNA</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>organism</INSDQualifier_name>
+              <INSDQualifier_value>synthetic construct</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>note</INSDQualifier_name>
+              <INSDQualifier_value>PatentLAMP Synthetic Primer LoopB (Set 1)</INSDQualifier_value>
+            </INSDQualifier>
+          </INSDFeature_quals>
+        </INSDFeature>
+      </INSDSeq_feature-table>
+      <INSDSeq_sequence>tagctagctagc</INSDSeq_sequence>
+    </INSDSeq>
+  </SequenceData>
+  <SequenceData sequenceIDNumber="7">
+    <INSDSeq>
+      <INSDSeq_length>6</INSDSeq_length>
+      <INSDSeq_moltype>DNA</INSDSeq_moltype>
+      <INSDSeq_division>PAT</INSDSeq_division>
+      <INSDSeq_other-seqids/>
+      <INSDSeq_feature-table>
+        <INSDFeature>
+          <INSDFeature_key>source</INSDFeature_key>
+          <INSDFeature_location>1..6</INSDFeature_location>
+          <INSDFeature_quals>
+            <INSDQualifier>
+              <INSDQualifier_name>mol_type</INSDQualifier_name>
+              <INSDQualifier_value>other DNA</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>organism</INSDQualifier_name>
+              <INSDQualifier_value>synthetic construct</INSDQualifier_value>
+            </INSDQualifier>
+            <INSDQualifier>
+              <INSDQualifier_name>note</INSDQualifier_name>
+              <INSDQualifier_value>PatentLAMP Standalone Synthetic Linker (Custom synthetic oligonucleotide linker (ACGTGA)) (Set 1)</INSDQualifier_value>
+            </INSDQualifier>
+          </INSDFeature_quals>
+        </INSDFeature>
+      </INSDSeq_feature-table>
+      <INSDSeq_sequence>acgtga</INSDSeq_sequence>
+    </INSDSeq>
+  </SequenceData>
+</ST26SequenceListing>

@@ -94,8 +94,14 @@ apicomplexa_fnas = glob.glob(os.path.join(apicomplexa_extract, "ncbi_dataset", "
 
 dog_fnas = glob.glob(os.path.join(dog_extract, "ncbi_dataset", "data", "GCF_*", "*.fna"))
 
-ticks_fnas = glob.glob(os.path.join(ticks_extract, "ncbi_dataset", "data", "GCA_*", "*.fna")) + \
+# Select primary representative tick reference assemblies (R. microplus and I. scapularis)
+all_ticks_fnas = glob.glob(os.path.join(ticks_extract, "ncbi_dataset", "data", "GCA_*", "*.fna")) + \
                  glob.glob(os.path.join(ticks_extract, "ncbi_dataset", "data", "GCF_*", "*.fna"))
+
+primary_tick_accessions = {"GCF_013339725.1", "GCF_016920785.2", "GCA_031841145.2", "GCF_000208615.1"}
+ticks_fnas = [fna for fna in all_ticks_fnas if any(acc in fna for acc in primary_tick_accessions)]
+if not ticks_fnas and all_ticks_fnas:
+    ticks_fnas = all_ticks_fnas[:2]  # Fallback to top 2 if accessions differ
 
 cat_extract = os.path.join(data_dir, "cat_raw")
 cat_fnas = glob.glob(os.path.join(cat_extract, "ncbi_dataset", "data", "GCF_*", "*.fna")) + \
@@ -109,8 +115,11 @@ print(f"Found {len(dog_fnas)} Dog genomic FASTA files.")
 print(f"Found {len(cat_fnas)} Cat genomic FASTA files.")
 print(f"Found {len(ticks_fnas)} Ticks genomic FASTA files.")
 
-# Load all Babesia accession IDs from assembly data report
+# Load all Babesia accession IDs and filter 1 representative accession per non-Babesia Apicomplexa species
 babesia_accessions = set()
+apicomplexa_bg_selected_accs = set()
+species_selected = {}
+
 jsonl_path = os.path.join(apicomplexa_extract, "ncbi_dataset", "data", "assembly_data_report.jsonl")
 if os.path.exists(jsonl_path):
     import json
@@ -119,10 +128,35 @@ if os.path.exists(jsonl_path):
             data = json.loads(line)
             acc = data.get("accession")
             org = data.get("organism", {}).get("organismName", "")
+            level = data.get("assemblyInfo", {}).get("assemblyLevel", "")
+            refseq_category = data.get("assemblyInfo", {}).get("refseqCategory", "")
+            
             if "Babesia" in org and acc:
                 babesia_accessions.add(acc)
+            elif acc:
+                # Priority: RefSeq representative/reference > RefSeq (GCF) > Assembly Level
+                is_gcf = 1 if acc.startswith("GCF_") else 0
+                is_refseq_cat = 2 if refseq_category in ["reference genome", "representative genome"] else 0
+                level_score = 3 if level == "Complete Genome" else (2 if level == "Chromosome" else 1)
+                score = (is_refseq_cat, is_gcf, level_score)
+                
+                if org not in species_selected or score > species_selected[org]["score"]:
+                    species_selected[org] = {"acc": acc, "score": score}
+
+apicomplexa_bg_selected_accs = {info["acc"] for info in species_selected.values()}
 
 print(f"Identified {len(babesia_accessions)} Babesia genome accessions as targets.")
+print(f"Deduplicated Apicomplexa background to {len(apicomplexa_bg_selected_accs)} representative species accessions.")
+
+# Filter apicomplexa_fnas to include all Babesia targets + only selected representative background genomes
+filtered_apicomplexa_fnas = []
+for fna in apicomplexa_fnas:
+    is_target = any(acc in fna for acc in babesia_accessions)
+    is_selected_bg = any(acc in fna for acc in apicomplexa_bg_selected_accs)
+    if is_target or is_selected_bg:
+        filtered_apicomplexa_fnas.append(fna)
+
+print(f"Filtering reduced Apicomplexa FASTA files from {len(apicomplexa_fnas)} to {len(filtered_apicomplexa_fnas)} (42 targets + {len(apicomplexa_bg_selected_accs)} background).")
 
 # Write segmented files
 with open(target_fasta_out, "w") as target_out, \
@@ -133,7 +167,7 @@ with open(target_fasta_out, "w") as target_out, \
      open(ticks_fasta_out, "w") as ticks_out:
     
     # Process Apicomplexa (Targets vs Background)
-    for fna in apicomplexa_fnas:
+    for fna in filtered_apicomplexa_fnas:
         is_target = any(acc in fna for acc in babesia_accessions)
         with open(fna, "r") as f:
             for line in f:

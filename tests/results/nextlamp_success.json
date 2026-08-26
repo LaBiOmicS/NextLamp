@@ -2,7 +2,7 @@
     "metadata": {
         "tool": "NextLAMP",
         "version": "1.0.0",
-        "timestamp": "2026-08-21T09:10:27.076818",
+        "timestamp": "2026-08-25T12:14:06.681403",
         "reproducibility": {
             "target_fasta": "/home/fabiano.menegidio/workdir/Omics/genomics/babesia/tests/data/target.fa",
             "target_fasta_sha256": "d38268fd5757b5f63d49c0f7015e69e28b936ce0f8ca194b61c4462c42bebb31",
@@ -71,6 +71,351 @@
                 "gc": 50.0
             },
             "F1c": {
+                "seq": "GTTGAAAACGGCAAATAGACAAAGAA",
+                "start": 64,
+                "end": 90,
+                "strand": -1,
+                "tm": 61.229475206282416,
+                "gc": 34.61538461538461
+            },
+            "B1c": {
+                "seq": "GCAGTTTCATAGCTTACAAGATGTGT",
+                "start": 90,
+                "end": 116,
+                "strand": 1,
+                "tm": 61.84733092166334,
+                "gc": 38.46153846153847
+            },
+            "B2": {
+                "seq": "CCGAGAAATGCACAACAC",
+                "start": 140,
+                "end": 158,
+                "strand": -1,
+                "tm": 55.91782152460581,
+                "gc": 50.0
+            },
+            "B3": {
+                "seq": "CGGAACTCATCATCAAGGTT",
+                "start": 168,
+                "end": 188,
+                "strand": -1,
+                "tm": 57.03175210623067,
+                "gc": 45.0
+            },
+            "tm_balance": 0.81,
+            "quality": "Excellent",
+            "LoopF": {
+                "seq": "GCAGGATCTCGCGCAGAG",
+                "start": 44,
+                "end": 62,
+                "strand": -1,
+                "tm": 62.13387280226402,
+                "gc": 66.66666666666666
+            },
+            "LoopB": {
+                "seq": "TTCACATTGTTCTCAGTCCT",
+                "start": 120,
+                "end": 140,
+                "strand": 1,
+                "tm": 55.802319822519735,
+                "gc": 40.0
+            },
+            "rank": 1
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0
+            },
+            "F1c": {
+                "seq": "GTTGAAAACGGCAAATAGACAAAGAA",
+                "start": 64,
+                "end": 90,
+                "strand": -1,
+                "tm": 61.229475206282416,
+                "gc": 34.61538461538461
+            },
+            "B1c": {
+                "seq": "GCAGTTTCATAGCTTACAAGATGTGT",
+                "start": 90,
+                "end": 116,
+                "strand": 1,
+                "tm": 61.84733092166334,
+                "gc": 38.46153846153847
+            },
+            "B2": {
+                "seq": "GTCCGAGAAATGCACAAC",
+                "start": 142,
+                "end": 160,
+                "strand": -1,
+                "tm": 55.60463513402658,
+                "gc": 50.0
+            },
+            "B3": {
+                "seq": "CGGAACTCATCATCAAGGTT",
+                "start": 168,
+                "end": 188,
+                "strand": -1,
+                "tm": 57.03175210623067,
+                "gc": 45.0
+            },
+            "tm_balance": 1.1232,
+            "quality": "Excellent",
+            "LoopF": {
+                "seq": "GCAGGATCTCGCGCAGAG",
+                "start": 44,
+                "end": 62,
+                "strand": -1,
+                "tm": 62.13387280226402,
+                "gc": 66.66666666666666
+            },
+            "LoopB": {
+                "seq": "TTCACATTGTTCTCAGTCCT",
+                "start": 120,
+                "end": 140,
+                "strand": 1,
+                "tm": 55.802319822519735,
+                "gc": 40.0
+            },
+            "rank": 2
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0
+            },
+            "F1c": {
+                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
+                "start": 82,
+                "end": 110,
+                "strand": -1,
+                "tm": 63.1261172088108,
+                "gc": 35.714285714285715
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTC",
+                "start": 112,
+                "end": 134,
+                "strand": 1,
+                "tm": 60.549555473870896,
+                "gc": 45.45454545454545
+            },
+            "B2": {
+                "seq": "GAACTCATCATCAAGGTTGC",
+                "start": 166,
+                "end": 186,
+                "strand": -1,
+                "tm": 56.22743730532278,
+                "gc": 45.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 1.7112,
+            "quality": "Excellent",
+            "LoopF": {
+                "seq": "CGGCAAATAGACAAAGAAGC",
+                "start": 62,
+                "end": 82,
+                "strand": -1,
+                "tm": 56.90508726553577,
+                "gc": 45.0
+            },
+            "LoopB": {
+                "seq": "GTGTTGTGCATTTCTCGG",
+                "start": 140,
+                "end": 158,
+                "strand": 1,
+                "tm": 55.917821524605756,
+                "gc": 50.0
+            },
+            "rank": 3
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0
+            },
+            "F1c": {
+                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
+                "start": 82,
+                "end": 110,
+                "strand": -1,
+                "tm": 63.1261172088108,
+                "gc": 35.714285714285715
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTC",
+                "start": 112,
+                "end": 134,
+                "strand": 1,
+                "tm": 60.549555473870896,
+                "gc": 45.45454545454545
+            },
+            "B2": {
+                "seq": "GGCGGAACTCATCATCAA",
+                "start": 172,
+                "end": 190,
+                "strand": -1,
+                "tm": 56.19304278731266,
+                "gc": 50.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 1.7456,
+            "quality": "Excellent",
+            "LoopF": {
+                "seq": "CGGCAAATAGACAAAGAAGC",
+                "start": 62,
+                "end": 82,
+                "strand": -1,
+                "tm": 56.90508726553577,
+                "gc": 45.0
+            },
+            "LoopB": {
+                "seq": "GTGTTGTGCATTTCTCGG",
+                "start": 140,
+                "end": 158,
+                "strand": 1,
+                "tm": 55.917821524605756,
+                "gc": 50.0
+            },
+            "rank": 4
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0
+            },
+            "F1c": {
+                "seq": "GTTGAAAACGGCAAATAGACAAAGAA",
+                "start": 64,
+                "end": 90,
+                "strand": -1,
+                "tm": 61.229475206282416,
+                "gc": 34.61538461538461
+            },
+            "B1c": {
+                "seq": "TGCGTTCACATTGTTCTCAGTCCTGT",
+                "start": 116,
+                "end": 142,
+                "strand": 1,
+                "tm": 66.68315775286862,
+                "gc": 46.15384615384615
+            },
+            "B2": {
+                "seq": "CGGAACTCATCATCAAGGTT",
+                "start": 168,
+                "end": 188,
+                "strand": -1,
+                "tm": 57.03175210623067,
+                "gc": 45.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 1.8461,
+            "quality": "Excellent",
+            "LoopF": {
+                "seq": "GCAGGATCTCGCGCAGAG",
+                "start": 44,
+                "end": 62,
+                "strand": -1,
+                "tm": 62.13387280226402,
+                "gc": 66.66666666666666
+            },
+            "LoopB": {
+                "seq": "GTTGTGCATTTCTCGGACTT",
+                "start": 142,
+                "end": 162,
+                "strand": 1,
+                "tm": 58.210387621423195,
+                "gc": 45.0
+            },
+            "rank": 5
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0
+            },
+            "F1c": {
                 "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
                 "start": 82,
                 "end": 110,
@@ -104,271 +449,22 @@
             },
             "tm_balance": 2.0012,
             "quality": "Good",
-            "rank": 1
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
+            "LoopF": {
+                "seq": "CGGCAAATAGACAAAGAAGC",
+                "start": 62,
+                "end": 82,
+                "strand": -1,
+                "tm": 56.90508726553577,
+                "gc": 45.0
             },
-            "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
+            "LoopB": {
+                "seq": "GTGTTGTGCATTTCTCGG",
+                "start": 140,
+                "end": 158,
                 "strand": 1,
-                "tm": 56.562182055522214,
+                "tm": 55.917821524605756,
                 "gc": 50.0
             },
-            "F1c": {
-                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
-                "start": 82,
-                "end": 110,
-                "strand": -1,
-                "tm": 63.1261172088108,
-                "gc": 35.714285714285715
-            },
-            "B1c": {
-                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
-                "start": 112,
-                "end": 136,
-                "strand": 1,
-                "tm": 62.94590057604802,
-                "gc": 45.83333333333333
-            },
-            "B2": {
-                "seq": "ATGGCGGAACTCATCATC",
-                "start": 174,
-                "end": 192,
-                "strand": -1,
-                "tm": 55.93744552142164,
-                "gc": 50.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
-                "end": 218,
-                "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
-            },
-            "tm_balance": 2.0012,
-            "quality": "Good",
-            "rank": 2
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
-            },
-            "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
-                "strand": 1,
-                "tm": 56.562182055522214,
-                "gc": 50.0
-            },
-            "F1c": {
-                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
-                "start": 82,
-                "end": 110,
-                "strand": -1,
-                "tm": 63.1261172088108,
-                "gc": 35.714285714285715
-            },
-            "B1c": {
-                "seq": "GTTGCGTTCACATTGTTCTCAG",
-                "start": 114,
-                "end": 136,
-                "strand": 1,
-                "tm": 60.29691071518636,
-                "gc": 45.45454545454545
-            },
-            "B2": {
-                "seq": "ATGGCGGAACTCATCATC",
-                "start": 174,
-                "end": 192,
-                "strand": -1,
-                "tm": 55.93744552142164,
-                "gc": 50.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
-                "end": 218,
-                "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
-            },
-            "tm_balance": 2.0012,
-            "quality": "Good",
-            "rank": 3
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
-            },
-            "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
-                "strand": 1,
-                "tm": 56.562182055522214,
-                "gc": 50.0
-            },
-            "F1c": {
-                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
-                "start": 82,
-                "end": 110,
-                "strand": -1,
-                "tm": 63.1261172088108,
-                "gc": 35.714285714285715
-            },
-            "B1c": {
-                "seq": "GTTGCGTTCACATTGTTCTCAGTC",
-                "start": 114,
-                "end": 138,
-                "strand": 1,
-                "tm": 62.714957014273864,
-                "gc": 45.83333333333333
-            },
-            "B2": {
-                "seq": "ATGGCGGAACTCATCATC",
-                "start": 174,
-                "end": 192,
-                "strand": -1,
-                "tm": 55.93744552142164,
-                "gc": 50.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
-                "end": 218,
-                "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
-            },
-            "tm_balance": 2.0012,
-            "quality": "Good",
-            "rank": 4
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
-            },
-            "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
-                "strand": 1,
-                "tm": 56.562182055522214,
-                "gc": 50.0
-            },
-            "F1c": {
-                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
-                "start": 82,
-                "end": 110,
-                "strand": -1,
-                "tm": 63.1261172088108,
-                "gc": 35.714285714285715
-            },
-            "B1c": {
-                "seq": "TGCGTTCACATTGTTCTCAGTC",
-                "start": 116,
-                "end": 138,
-                "strand": 1,
-                "tm": 61.069400233456406,
-                "gc": 45.45454545454545
-            },
-            "B2": {
-                "seq": "ATGGCGGAACTCATCATC",
-                "start": 174,
-                "end": 192,
-                "strand": -1,
-                "tm": 55.93744552142164,
-                "gc": 50.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
-                "end": 218,
-                "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
-            },
-            "tm_balance": 2.0012,
-            "quality": "Good",
-            "rank": 5
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
-            },
-            "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
-                "strand": 1,
-                "tm": 56.562182055522214,
-                "gc": 50.0
-            },
-            "F1c": {
-                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
-                "start": 82,
-                "end": 110,
-                "strand": -1,
-                "tm": 63.1261172088108,
-                "gc": 35.714285714285715
-            },
-            "B1c": {
-                "seq": "CGTTCACATTGTTCTCAGTCCT",
-                "start": 118,
-                "end": 140,
-                "strand": 1,
-                "tm": 60.234787864762666,
-                "gc": 45.45454545454545
-            },
-            "B2": {
-                "seq": "ATGGCGGAACTCATCATC",
-                "start": 174,
-                "end": 192,
-                "strand": -1,
-                "tm": 55.93744552142164,
-                "gc": 50.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
-                "end": 218,
-                "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
-            },
-            "tm_balance": 2.0012,
-            "quality": "Good",
             "rank": 6
         },
         {
@@ -381,36 +477,36 @@
                 "gc": 40.909090909090914
             },
             "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
+                "seq": "TACACCAGTGATGCCTACAA",
+                "start": 24,
+                "end": 44,
                 "strand": 1,
-                "tm": 56.562182055522214,
-                "gc": 50.0
+                "tm": 57.77998907996971,
+                "gc": 45.0
             },
             "F1c": {
-                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
-                "start": 82,
-                "end": 110,
+                "seq": "TGTAAGCTATGAAACTGCGTTGAA",
+                "start": 84,
+                "end": 108,
                 "strand": -1,
-                "tm": 63.1261172088108,
-                "gc": 35.714285714285715
+                "tm": 60.92657124963671,
+                "gc": 37.5
             },
             "B1c": {
-                "seq": "CGTTCACATTGTTCTCAGTCCTGT",
-                "start": 118,
-                "end": 142,
+                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
+                "start": 112,
+                "end": 136,
                 "strand": 1,
-                "tm": 62.951012421080236,
+                "tm": 62.94590057604802,
                 "gc": 45.83333333333333
             },
             "B2": {
-                "seq": "ATGGCGGAACTCATCATC",
-                "start": 174,
-                "end": 192,
+                "seq": "CGGAACTCATCATCAAGGTT",
+                "start": 168,
+                "end": 188,
                 "strand": -1,
-                "tm": 55.93744552142164,
-                "gc": 50.0
+                "tm": 57.03175210623067,
+                "gc": 45.0
             },
             "B3": {
                 "seq": "CGATGAGCTGCAACAAAA",
@@ -420,8 +516,24 @@
                 "tm": 55.48959081993564,
                 "gc": 44.44444444444444
             },
-            "tm_balance": 2.0012,
+            "tm_balance": 2.1247,
             "quality": "Good",
+            "LoopF": {
+                "seq": "AGACAAAGAAGCGCAGGA",
+                "start": 56,
+                "end": 74,
+                "strand": -1,
+                "tm": 57.99844696279848,
+                "gc": 50.0
+            },
+            "LoopB": {
+                "seq": "TCCTGTGTTGTGCATTTCTC",
+                "start": 136,
+                "end": 156,
+                "strand": 1,
+                "tm": 57.835703113337104,
+                "gc": 45.0
+            },
             "rank": 7
         },
         {
@@ -434,20 +546,158 @@
                 "gc": 40.909090909090914
             },
             "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
+                "seq": "TACACCAGTGATGCCTACAA",
+                "start": 24,
+                "end": 44,
                 "strand": 1,
-                "tm": 56.562182055522214,
-                "gc": 50.0
+                "tm": 57.77998907996971,
+                "gc": 45.0
             },
             "F1c": {
-                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
-                "start": 82,
-                "end": 110,
+                "seq": "TGTAAGCTATGAAACTGCGTTGAA",
+                "start": 84,
+                "end": 108,
                 "strand": -1,
-                "tm": 63.1261172088108,
-                "gc": 35.714285714285715
+                "tm": 60.92657124963671,
+                "gc": 37.5
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
+                "start": 112,
+                "end": 136,
+                "strand": 1,
+                "tm": 62.94590057604802,
+                "gc": 45.83333333333333
+            },
+            "B2": {
+                "seq": "GAACTCATCATCAAGGTTGC",
+                "start": 166,
+                "end": 186,
+                "strand": -1,
+                "tm": 56.22743730532278,
+                "gc": 45.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 2.929,
+            "quality": "Good",
+            "LoopF": {
+                "seq": "AGACAAAGAAGCGCAGGA",
+                "start": 56,
+                "end": 74,
+                "strand": -1,
+                "tm": 57.99844696279848,
+                "gc": 50.0
+            },
+            "LoopB": {
+                "seq": "GTGTTGTGCATTTCTCGG",
+                "start": 140,
+                "end": 158,
+                "strand": 1,
+                "tm": 55.917821524605756,
+                "gc": 50.0
+            },
+            "rank": 8
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "TACACCAGTGATGCCTACAA",
+                "start": 24,
+                "end": 44,
+                "strand": 1,
+                "tm": 57.77998907996971,
+                "gc": 45.0
+            },
+            "F1c": {
+                "seq": "TGTAAGCTATGAAACTGCGTTGAA",
+                "start": 84,
+                "end": 108,
+                "strand": -1,
+                "tm": 60.92657124963671,
+                "gc": 37.5
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
+                "start": 112,
+                "end": 136,
+                "strand": 1,
+                "tm": 62.94590057604802,
+                "gc": 45.83333333333333
+            },
+            "B2": {
+                "seq": "GGCGGAACTCATCATCAA",
+                "start": 172,
+                "end": 190,
+                "strand": -1,
+                "tm": 56.19304278731266,
+                "gc": 50.0
+            },
+            "B3": {
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
+                "end": 218,
+                "strand": -1,
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
+            },
+            "tm_balance": 2.9634,
+            "quality": "Good",
+            "LoopF": {
+                "seq": "AGACAAAGAAGCGCAGGA",
+                "start": 56,
+                "end": 74,
+                "strand": -1,
+                "tm": 57.99844696279848,
+                "gc": 50.0
+            },
+            "LoopB": {
+                "seq": "GTGTTGTGCATTTCTCGG",
+                "start": 140,
+                "end": 158,
+                "strand": 1,
+                "tm": 55.917821524605756,
+                "gc": 50.0
+            },
+            "rank": 9
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914
+            },
+            "F2": {
+                "seq": "TACACCAGTGATGCCTACAA",
+                "start": 24,
+                "end": 44,
+                "strand": 1,
+                "tm": 57.77998907996971,
+                "gc": 45.0
+            },
+            "F1c": {
+                "seq": "TGTAAGCTATGAAACTGCGTTGAA",
+                "start": 84,
+                "end": 108,
+                "strand": -1,
+                "tm": 60.92657124963671,
+                "gc": 37.5
             },
             "B1c": {
                 "seq": "GTGTTGCGTTCACATTGTTCTCAG",
@@ -466,121 +716,31 @@
                 "gc": 50.0
             },
             "B3": {
-                "seq": "CGATGAGCTGCAACAAAACA",
-                "start": 198,
+                "seq": "CGATGAGCTGCAACAAAA",
+                "start": 200,
                 "end": 218,
                 "strand": -1,
-                "tm": 59.14432606912135,
-                "gc": 45.0
+                "tm": 55.48959081993564,
+                "gc": 44.44444444444444
             },
-            "tm_balance": 2.903,
+            "tm_balance": 3.219,
             "quality": "Good",
-            "rank": 8
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
-            },
-            "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
-                "strand": 1,
-                "tm": 56.562182055522214,
+            "LoopF": {
+                "seq": "AGACAAAGAAGCGCAGGA",
+                "start": 56,
+                "end": 74,
+                "strand": -1,
+                "tm": 57.99844696279848,
                 "gc": 50.0
             },
-            "F1c": {
-                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
-                "start": 82,
-                "end": 110,
-                "strand": -1,
-                "tm": 63.1261172088108,
-                "gc": 35.714285714285715
-            },
-            "B1c": {
-                "seq": "GTTGCGTTCACATTGTTCTCAGTC",
-                "start": 114,
-                "end": 138,
+            "LoopB": {
+                "seq": "GTGTTGTGCATTTCTCGG",
+                "start": 140,
+                "end": 158,
                 "strand": 1,
-                "tm": 62.714957014273864,
-                "gc": 45.83333333333333
-            },
-            "B2": {
-                "seq": "ATGGCGGAACTCATCATC",
-                "start": 174,
-                "end": 192,
-                "strand": -1,
-                "tm": 55.93744552142164,
+                "tm": 55.917821524605756,
                 "gc": 50.0
             },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAACA",
-                "start": 198,
-                "end": 218,
-                "strand": -1,
-                "tm": 59.14432606912135,
-                "gc": 45.0
-            },
-            "tm_balance": 2.903,
-            "quality": "Good",
-            "rank": 9
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
-            },
-            "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
-                "strand": 1,
-                "tm": 56.562182055522214,
-                "gc": 50.0
-            },
-            "F1c": {
-                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
-                "start": 82,
-                "end": 110,
-                "strand": -1,
-                "tm": 63.1261172088108,
-                "gc": 35.714285714285715
-            },
-            "B1c": {
-                "seq": "CGTTCACATTGTTCTCAGTCCTGT",
-                "start": 118,
-                "end": 142,
-                "strand": 1,
-                "tm": 62.951012421080236,
-                "gc": 45.83333333333333
-            },
-            "B2": {
-                "seq": "ATGGCGGAACTCATCATC",
-                "start": 174,
-                "end": 192,
-                "strand": -1,
-                "tm": 55.93744552142164,
-                "gc": 50.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAACA",
-                "start": 198,
-                "end": 218,
-                "strand": -1,
-                "tm": 59.14432606912135,
-                "gc": 45.0
-            },
-            "tm_balance": 2.903,
-            "quality": "Good",
             "rank": 10
         }
     ]

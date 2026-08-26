@@ -1,0 +1,25 @@
+[
+    {
+        "metadata": {
+            "tool": "PatentLAMP",
+            "version": "1.0.0",
+            "timestamp": "2026-08-25T10:09:50.180530"
+        },
+        "target_species": "Babesia canis",
+        "reaction_temperature_c": 65.0,
+        "controls_evaluated": {
+            "fip_control_natural": "AGCTAGCTAGCTAGCTAGCTGCTAGCTAGCTAGCTA",
+            "fip_synthetic_patented": "AGCTAGCTAGCTAGCTAGCTACGTGAGCTAGCTAGCTAGCTA",
+            "bip_control_natural": "TCTAGCTAGCTAGCTAGCTAATCGATCGATCGATCG",
+            "bip_synthetic_patented": "TCTAGCTAGCTAGCTAGCTAACGTGAATCGATCGATCGATCG"
+        },
+        "comparative_metrics": {
+            "fip_delta_delta_g_kcal_mol": -0.83,
+            "bip_delta_delta_g_kcal_mol": 0.0,
+            "average_delta_delta_g_kcal_mol": -0.41,
+            "average_dimer_reduction_pct": 0.0,
+            "boltzmann_equilibrium_ratio": 0.54
+        },
+        "patent_claims_support_text": "O conjunto de primers sintéticos quiméricos para Babesia canis compreende moléculas não-naturais projetadas por engenharia de ligantes sintéticos (junção artificial especificada). A alteração estrutural mantém a eficiência de anelamento ao genoma alvo enquanto confere novidade e caráter sintético proprietário (superando a vedação do Art. 10, IX da LPI), com estabilidade termodinâmica de autodimerização mensurada em ddG = -0.41 kcal/mol a 65.0°C."
+    }
+]

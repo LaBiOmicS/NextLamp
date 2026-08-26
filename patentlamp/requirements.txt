@@ -1,0 +1,15 @@
+# PatentLAMP Dependencies
+# Python >= 3.8
+
+# Core standard library modules used:
+# - xml.etree.ElementTree
+# - xml.dom.minidom
+# - argparse
+# - json
+# - math
+# - unittest
+
+# Optional development & testing dependencies:
+pytest>=7.0.0
+black>=23.0.0
+flake8>=6.0.0

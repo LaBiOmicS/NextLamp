@@ -2,7 +2,7 @@
   NextLAMP: Whole-Genome LAMP Primer Design Report
 ========================================================================
 
-Execution Date:       2026-08-21T09:10:27.076818
+Execution Date:       2026-08-25T12:14:06.681403
 Target FASTA:         /home/fabiano.menegidio/workdir/Omics/genomics/babesia/tests/data/target.fa
 Target SHA256:        d38268fd5757b5f63d49c0f7015e69e28b936ce0f8ca194b61c4462c42bebb31
 Target Genomes:       1
@@ -28,84 +28,104 @@ Threads Used:         4
   Designed LAMP Primer Sets (Ranked by Thermal Balance)
 ========================================================================
 
-[SET #1] Quality: Good | Tm Balance Score: 2.0012
-  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
-  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
-  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
-  B1c:  5'- GTGTTGCGTTCACATTGTTCTC -3'  (pos: 112, Tm: 60.5°C, GC: 45.5%)
-  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
-  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+[SET #1] Quality: Excellent | Tm Balance Score: 0.8100
+  F3   : 5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2   : 5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c  : 5'- GTTGAAAACGGCAAATAGACAAAGAA -3'  (pos: 64, Tm: 61.2°C, GC: 34.6%)
+  LoopF: 5'- GCAGGATCTCGCGCAGAG -3'  (pos: 44, Tm: 62.1°C, GC: 66.7%)
+  B1c  : 5'- GCAGTTTCATAGCTTACAAGATGTGT -3'  (pos: 90, Tm: 61.8°C, GC: 38.5%)
+  LoopB: 5'- TTCACATTGTTCTCAGTCCT -3'  (pos: 120, Tm: 55.8°C, GC: 40.0%)
+  B2   : 5'- CCGAGAAATGCACAACAC -3'  (pos: 140, Tm: 55.9°C, GC: 50.0%)
+  B3   : 5'- CGGAACTCATCATCAAGGTT -3'  (pos: 168, Tm: 57.0°C, GC: 45.0%)
 
-[SET #2] Quality: Good | Tm Balance Score: 2.0012
-  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
-  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
-  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
-  B1c:  5'- GTGTTGCGTTCACATTGTTCTCAG -3'  (pos: 112, Tm: 62.9°C, GC: 45.8%)
-  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
-  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+[SET #2] Quality: Excellent | Tm Balance Score: 1.1232
+  F3   : 5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2   : 5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c  : 5'- GTTGAAAACGGCAAATAGACAAAGAA -3'  (pos: 64, Tm: 61.2°C, GC: 34.6%)
+  LoopF: 5'- GCAGGATCTCGCGCAGAG -3'  (pos: 44, Tm: 62.1°C, GC: 66.7%)
+  B1c  : 5'- GCAGTTTCATAGCTTACAAGATGTGT -3'  (pos: 90, Tm: 61.8°C, GC: 38.5%)
+  LoopB: 5'- TTCACATTGTTCTCAGTCCT -3'  (pos: 120, Tm: 55.8°C, GC: 40.0%)
+  B2   : 5'- GTCCGAGAAATGCACAAC -3'  (pos: 142, Tm: 55.6°C, GC: 50.0%)
+  B3   : 5'- CGGAACTCATCATCAAGGTT -3'  (pos: 168, Tm: 57.0°C, GC: 45.0%)
 
-[SET #3] Quality: Good | Tm Balance Score: 2.0012
-  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
-  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
-  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
-  B1c:  5'- GTTGCGTTCACATTGTTCTCAG -3'  (pos: 114, Tm: 60.3°C, GC: 45.5%)
-  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
-  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+[SET #3] Quality: Excellent | Tm Balance Score: 1.7112
+  F3   : 5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2   : 5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c  : 5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  LoopF: 5'- CGGCAAATAGACAAAGAAGC -3'  (pos: 62, Tm: 56.9°C, GC: 45.0%)
+  B1c  : 5'- GTGTTGCGTTCACATTGTTCTC -3'  (pos: 112, Tm: 60.5°C, GC: 45.5%)
+  LoopB: 5'- GTGTTGTGCATTTCTCGG -3'  (pos: 140, Tm: 55.9°C, GC: 50.0%)
+  B2   : 5'- GAACTCATCATCAAGGTTGC -3'  (pos: 166, Tm: 56.2°C, GC: 45.0%)
+  B3   : 5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
 
-[SET #4] Quality: Good | Tm Balance Score: 2.0012
-  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
-  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
-  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
-  B1c:  5'- GTTGCGTTCACATTGTTCTCAGTC -3'  (pos: 114, Tm: 62.7°C, GC: 45.8%)
-  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
-  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+[SET #4] Quality: Excellent | Tm Balance Score: 1.7456
+  F3   : 5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2   : 5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c  : 5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  LoopF: 5'- CGGCAAATAGACAAAGAAGC -3'  (pos: 62, Tm: 56.9°C, GC: 45.0%)
+  B1c  : 5'- GTGTTGCGTTCACATTGTTCTC -3'  (pos: 112, Tm: 60.5°C, GC: 45.5%)
+  LoopB: 5'- GTGTTGTGCATTTCTCGG -3'  (pos: 140, Tm: 55.9°C, GC: 50.0%)
+  B2   : 5'- GGCGGAACTCATCATCAA -3'  (pos: 172, Tm: 56.2°C, GC: 50.0%)
+  B3   : 5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
 
-[SET #5] Quality: Good | Tm Balance Score: 2.0012
-  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
-  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
-  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
-  B1c:  5'- TGCGTTCACATTGTTCTCAGTC -3'  (pos: 116, Tm: 61.1°C, GC: 45.5%)
-  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
-  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+[SET #5] Quality: Excellent | Tm Balance Score: 1.8461
+  F3   : 5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2   : 5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c  : 5'- GTTGAAAACGGCAAATAGACAAAGAA -3'  (pos: 64, Tm: 61.2°C, GC: 34.6%)
+  LoopF: 5'- GCAGGATCTCGCGCAGAG -3'  (pos: 44, Tm: 62.1°C, GC: 66.7%)
+  B1c  : 5'- TGCGTTCACATTGTTCTCAGTCCTGT -3'  (pos: 116, Tm: 66.7°C, GC: 46.2%)
+  LoopB: 5'- GTTGTGCATTTCTCGGACTT -3'  (pos: 142, Tm: 58.2°C, GC: 45.0%)
+  B2   : 5'- CGGAACTCATCATCAAGGTT -3'  (pos: 168, Tm: 57.0°C, GC: 45.0%)
+  B3   : 5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
 
 [SET #6] Quality: Good | Tm Balance Score: 2.0012
-  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
-  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
-  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
-  B1c:  5'- CGTTCACATTGTTCTCAGTCCT -3'  (pos: 118, Tm: 60.2°C, GC: 45.5%)
-  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
-  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+  F3   : 5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2   : 5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
+  F1c  : 5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
+  LoopF: 5'- CGGCAAATAGACAAAGAAGC -3'  (pos: 62, Tm: 56.9°C, GC: 45.0%)
+  B1c  : 5'- GTGTTGCGTTCACATTGTTCTC -3'  (pos: 112, Tm: 60.5°C, GC: 45.5%)
+  LoopB: 5'- GTGTTGTGCATTTCTCGG -3'  (pos: 140, Tm: 55.9°C, GC: 50.0%)
+  B2   : 5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
+  B3   : 5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
 
-[SET #7] Quality: Good | Tm Balance Score: 2.0012
-  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
-  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
-  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
-  B1c:  5'- CGTTCACATTGTTCTCAGTCCTGT -3'  (pos: 118, Tm: 63.0°C, GC: 45.8%)
-  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
-  B3:   5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
+[SET #7] Quality: Good | Tm Balance Score: 2.1247
+  F3   : 5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2   : 5'- TACACCAGTGATGCCTACAA -3'  (pos: 24, Tm: 57.8°C, GC: 45.0%)
+  F1c  : 5'- TGTAAGCTATGAAACTGCGTTGAA -3'  (pos: 84, Tm: 60.9°C, GC: 37.5%)
+  LoopF: 5'- AGACAAAGAAGCGCAGGA -3'  (pos: 56, Tm: 58.0°C, GC: 50.0%)
+  B1c  : 5'- GTGTTGCGTTCACATTGTTCTCAG -3'  (pos: 112, Tm: 62.9°C, GC: 45.8%)
+  LoopB: 5'- TCCTGTGTTGTGCATTTCTC -3'  (pos: 136, Tm: 57.8°C, GC: 45.0%)
+  B2   : 5'- CGGAACTCATCATCAAGGTT -3'  (pos: 168, Tm: 57.0°C, GC: 45.0%)
+  B3   : 5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
 
-[SET #8] Quality: Good | Tm Balance Score: 2.9030
-  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
-  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
-  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
-  B1c:  5'- GTGTTGCGTTCACATTGTTCTCAG -3'  (pos: 112, Tm: 62.9°C, GC: 45.8%)
-  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
-  B3:   5'- CGATGAGCTGCAACAAAACA -3'  (pos: 198, Tm: 59.1°C, GC: 45.0%)
+[SET #8] Quality: Good | Tm Balance Score: 2.9290
+  F3   : 5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2   : 5'- TACACCAGTGATGCCTACAA -3'  (pos: 24, Tm: 57.8°C, GC: 45.0%)
+  F1c  : 5'- TGTAAGCTATGAAACTGCGTTGAA -3'  (pos: 84, Tm: 60.9°C, GC: 37.5%)
+  LoopF: 5'- AGACAAAGAAGCGCAGGA -3'  (pos: 56, Tm: 58.0°C, GC: 50.0%)
+  B1c  : 5'- GTGTTGCGTTCACATTGTTCTCAG -3'  (pos: 112, Tm: 62.9°C, GC: 45.8%)
+  LoopB: 5'- GTGTTGTGCATTTCTCGG -3'  (pos: 140, Tm: 55.9°C, GC: 50.0%)
+  B2   : 5'- GAACTCATCATCAAGGTTGC -3'  (pos: 166, Tm: 56.2°C, GC: 45.0%)
+  B3   : 5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
 
-[SET #9] Quality: Good | Tm Balance Score: 2.9030
-  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
-  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
-  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
-  B1c:  5'- GTTGCGTTCACATTGTTCTCAGTC -3'  (pos: 114, Tm: 62.7°C, GC: 45.8%)
-  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
-  B3:   5'- CGATGAGCTGCAACAAAACA -3'  (pos: 198, Tm: 59.1°C, GC: 45.0%)
+[SET #9] Quality: Good | Tm Balance Score: 2.9634
+  F3   : 5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2   : 5'- TACACCAGTGATGCCTACAA -3'  (pos: 24, Tm: 57.8°C, GC: 45.0%)
+  F1c  : 5'- TGTAAGCTATGAAACTGCGTTGAA -3'  (pos: 84, Tm: 60.9°C, GC: 37.5%)
+  LoopF: 5'- AGACAAAGAAGCGCAGGA -3'  (pos: 56, Tm: 58.0°C, GC: 50.0%)
+  B1c  : 5'- GTGTTGCGTTCACATTGTTCTCAG -3'  (pos: 112, Tm: 62.9°C, GC: 45.8%)
+  LoopB: 5'- GTGTTGTGCATTTCTCGG -3'  (pos: 140, Tm: 55.9°C, GC: 50.0%)
+  B2   : 5'- GGCGGAACTCATCATCAA -3'  (pos: 172, Tm: 56.2°C, GC: 50.0%)
+  B3   : 5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
 
-[SET #10] Quality: Good | Tm Balance Score: 2.9030
-  F3:   5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
-  F2:   5'- ACTACACCAGTGATGCCT -3'  (pos: 22, Tm: 56.6°C, GC: 50.0%)
-  F1c:  5'- CTTGTAAGCTATGAAACTGCGTTGAAAA -3'  (pos: 82, Tm: 63.1°C, GC: 35.7%)
-  B1c:  5'- CGTTCACATTGTTCTCAGTCCTGT -3'  (pos: 118, Tm: 63.0°C, GC: 45.8%)
-  B2:   5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
-  B3:   5'- CGATGAGCTGCAACAAAACA -3'  (pos: 198, Tm: 59.1°C, GC: 45.0%)
+[SET #10] Quality: Good | Tm Balance Score: 3.2190
+  F3   : 5'- GAGCCTTACAGAGTCTAAAAGT -3'  (pos: 0, Tm: 56.9°C, GC: 40.9%)
+  F2   : 5'- TACACCAGTGATGCCTACAA -3'  (pos: 24, Tm: 57.8°C, GC: 45.0%)
+  F1c  : 5'- TGTAAGCTATGAAACTGCGTTGAA -3'  (pos: 84, Tm: 60.9°C, GC: 37.5%)
+  LoopF: 5'- AGACAAAGAAGCGCAGGA -3'  (pos: 56, Tm: 58.0°C, GC: 50.0%)
+  B1c  : 5'- GTGTTGCGTTCACATTGTTCTCAG -3'  (pos: 112, Tm: 62.9°C, GC: 45.8%)
+  LoopB: 5'- GTGTTGTGCATTTCTCGG -3'  (pos: 140, Tm: 55.9°C, GC: 50.0%)
+  B2   : 5'- ATGGCGGAACTCATCATC -3'  (pos: 174, Tm: 55.9°C, GC: 50.0%)
+  B3   : 5'- CGATGAGCTGCAACAAAA -3'  (pos: 200, Tm: 55.5°C, GC: 44.4%)
 
 ========================================================================
