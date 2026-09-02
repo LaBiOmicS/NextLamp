@@ -38,6 +38,8 @@ slurm_logs/*
 !slurm_logs/.gitkeep
 evaluation_subsample/*
 !evaluation_subsample/.gitkeep
+evaluation_viral_validation/*
+!evaluation_viral_validation/.gitkeep
 cluster_run/*
 !cluster_run/.gitkeep
 
