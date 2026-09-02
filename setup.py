@@ -5,7 +5,7 @@ setup(
     version="1.0.0",
     description="NextLAMP: A Modern, FAIR-Compliant, High-Performance Whole-Genome LAMP Primer Design Tool",
     author="Antigravity Team",
-    packages=find_packages(),
+    packages=find_packages(include=["nextlamp", "nextlamp.*", "scripts", "scripts.*"]),
     package_data={
         "nextlamp": [
             "sample_data/*",
