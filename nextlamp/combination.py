@@ -1,29 +1,27 @@
+import functools
+from bisect import bisect_left, bisect_right
 from .thermo import has_self_dimer
 
+_COMPLEMENT_TABLE = str.maketrans("ACGTacgtNn", "TGCAtgcaNn")
+
+@functools.lru_cache(maxsize=262144)
+def _reverse_complement(seq: str) -> str:
+    return seq.translate(_COMPLEMENT_TABLE)[::-1]
+
+@functools.lru_cache(maxsize=262144)
 def check_heterodimer(seq1: str, seq2: str, max_contiguous_matches: int = 8) -> bool:
     """
     Check if two different primers can dimerize (cross-dimerization).
-    Aligns seq1 against the reverse complement of seq2.
+    Aligns seq1 against the reverse complement of seq2 using fast substring matching.
     """
-    from Bio.Seq import Seq
-    seq1_upper = seq1.upper()
-    seq2_rev_comp = str(Seq(seq2.upper()).reverse_complement())
+    s1 = seq1.upper()
+    s2_rc = _reverse_complement(seq2.upper())
+    len1 = len(s1)
     
-    len1 = len(seq1_upper)
-    len2 = len(seq2_rev_comp)
-    
-    # Check for contiguous matches between seq1 and reverse complement of seq2
-    for shift in range(-len1 + 1, len2):
-        matches = 0
-        for i in range(len1):
-            j = i + shift
-            if 0 <= j < len2:
-                if seq1_upper[i] == seq2_rev_comp[j]:
-                    matches += 1
-                    if matches >= max_contiguous_matches:
-                        return True
-                else:
-                    matches = 0
+    # Fast check: any contiguous match of length >= max_contiguous_matches?
+    for i in range(len1 - max_contiguous_matches + 1):
+        if s1[i:i + max_contiguous_matches] in s2_rc:
+            return True
     return False
 
 def check_set_dimers(primers: list[str]) -> bool:
@@ -40,30 +38,6 @@ def check_set_dimers(primers: list[str]) -> bool:
 def _classify_quality(tm_balance: float) -> str:
     """
     Classifies a LAMP primer set quality based on thermal balance (Tm imbalance).
-    
-    tm_balance = |Tm(F2) - Tm(B2)| + |Tm(F3) - Tm(B3)|
-    
-    Lower values mean the forward and backward primer pairs have more similar
-    melting temperatures, leading to more uniform amplification.
-    
-    Biological rationale (Eiken Chemical / PrimerExplorer guidelines):
-    - F3, B3, F2, B2 should each have Tm ~59-61°C (target 60°C).
-    - Primers within the same functional pair (F3/B3 or F2/B2) should
-      have Tm as close as possible; differences > 5°C between any two
-      primers in the set may cause biased amplification or failure.
-    - Since tm_balance sums TWO pair-wise |ΔTm| values, the thresholds
-      below reflect the combined tolerance for both pairs:
-    
-    Thresholds:
-        <= 2.0  ->  Excellent  (avg <=1°C per pair; within ideal Tm window)
-        <= 5.0  ->  Good       (within the 5°C max single-pair tolerance)
-        <= 8.0  ->  Acceptable (moderate imbalance; may reduce efficiency)
-        >  8.0  ->  Poor       (exceeds recommended Tm tolerance)
-    
-    References:
-        - Notomi et al. (2000) Nucleic Acids Res. 28(12):e63
-        - Eiken Chemical Co. PrimerExplorer V5 Manual
-        - Nagamine et al. (2002) Mol Cell Probes 16(3):223-9
     """
     if tm_balance <= 2.0:
         return "Excellent"
@@ -100,92 +74,149 @@ def assemble_sets(filtered_candidates: dict,
                   check_dimers: bool = True) -> list[dict]:
     """
     Assembles F3, F2, F1c, B1c, B2, B3 candidates into valid LAMP primer sets
-    using spatial distance pruning and heterodimer checks.
+    using spatial distance pruning (binary search) and heterodimer checks.
     """
     f3_b3_list = filtered_candidates.get("F3_B3", [])
     f2_b2_list = filtered_candidates.get("F2_B2", [])
     f1c_b1c_list = filtered_candidates.get("F1c_B1c", [])
     loop_list = filtered_candidates.get("Loop", [])
     
-    # Group candidates by strand for positive strand synthesis
-    f3_list = [c for c in f3_b3_list if c.strand == 1]
-    f2_list = [c for c in f2_b2_list if c.strand == 1]
-    f1c_list = [c for c in f1c_b1c_list if c.strand == -1]
+    # Group and sort candidates by spatial coordinates for binary search
+    f3_list = sorted([c for c in f3_b3_list if c.strand == 1], key=lambda x: x.end)
+    f3_ends = [c.end for c in f3_list]
+
+    f2_list = sorted([c for c in f2_b2_list if c.strand == 1], key=lambda x: x.start)
     
-    b1c_list = [c for c in f1c_b1c_list if c.strand == 1]
-    b2_list = [c for c in f2_b2_list if c.strand == -1]
-    b3_list = [c for c in f3_b3_list if c.strand == -1]
+    f1c_list = sorted([c for c in f1c_b1c_list if c.strand == -1], key=lambda x: x.start)
+    f1c_starts = [c.start for c in f1c_list]
     
-    results = []
-    
-    # We loop over F2
+    b1c_list = sorted([c for c in f1c_b1c_list if c.strand == 1], key=lambda x: x.end)
+    b1c_ends = [c.end for c in b1c_list]
+
+    b2_list = sorted([c for c in f2_b2_list if c.strand == -1], key=lambda x: x.end)
+    b2_ends = [c.end for c in b2_list]
+
+    b3_list = sorted([c for c in f3_b3_list if c.strand == -1], key=lambda x: x.start)
+    b3_starts = [c.start for c in b3_list]
+
+    # Group and sort loop candidates for fast spatial bisect
+    loop_f_list = sorted([c for c in loop_list if c.strand == -1], key=lambda x: x.start)
+    loop_f_starts = [c.start for c in loop_f_list]
+
+    loop_b_list = sorted([c for c in loop_list if c.strand == 1], key=lambda x: x.start)
+    loop_b_starts = [c.start for c in loop_b_list]
+
+    # Map for locus deduplication: (f2_start, b2_start) -> best lamp_set
+    locus_results = {}
+
     for f2 in f2_list:
-        # 1. Find F3 (F3-F2 distance)
-        valid_f3s = [f3 for f3 in f3_list if min_dist_f3_f2 <= (f2.start - f3.end) <= max_dist_f3_f2]
-        if not valid_f3s:
+        # 1. Binary search for B2 (min_dist_inner <= b2.end - f2.start - 2 <= max_dist_inner)
+        min_b2_end = f2.start + 2 + min_dist_inner
+        max_b2_end = f2.start + 2 + max_dist_inner
+        i_b2_min = bisect_left(b2_ends, min_b2_end)
+        i_b2_max = bisect_right(b2_ends, max_b2_end)
+        if i_b2_min >= i_b2_max:
             continue
-            
-        # 2. Find F1c (F2-F1c distance)
-        valid_f1cs = [f1c for f1c in f1c_list if min_dist_f2_f1c <= (f1c.start - f2.start - 1) <= max_dist_f2_f1c]
-        if not valid_f1cs:
+        valid_b2s = b2_list[i_b2_min:i_b2_max]
+
+        # 2. Binary search for F3 (min_dist_f3_f2 <= f2.start - f3.end <= max_dist_f3_f2)
+        min_f3_end = f2.start - max_dist_f3_f2
+        max_f3_end = f2.start - min_dist_f3_f2
+        i_f3_min = bisect_left(f3_ends, min_f3_end)
+        i_f3_max = bisect_right(f3_ends, max_f3_end)
+        if i_f3_min >= i_f3_max:
             continue
-            
-        for f3 in valid_f3s:
-            for f1c in valid_f1cs:
-                # Tm Checks for F1c relative to F3 and F2
-                if f1c.tm - f3.tm < min_tm_diff_f1c_b1c or f1c.tm - f2.tm < min_tm_diff_f1c_b1c:
+        valid_f3s = f3_list[i_f3_min:i_f3_max]
+
+        # 3. Binary search for F1c (min_dist_f2_f1c <= f1c.start - f2.start - 1 <= max_dist_f2_f1c)
+        min_f1c_start = f2.start + 1 + min_dist_f2_f1c
+        max_f1c_start = f2.start + 1 + max_dist_f2_f1c
+        i_f1c_min = bisect_left(f1c_starts, min_f1c_start)
+        i_f1c_max = bisect_right(f1c_starts, max_f1c_start)
+        if i_f1c_min >= i_f1c_max:
+            continue
+        valid_f1cs = f1c_list[i_f1c_min:i_f1c_max]
+
+        for b2 in valid_b2s:
+            # 4. Binary search for B1c (min_dist_b1c_b2 <= b2.end - b1c.end - 1 <= max_dist_b1c_b2)
+            min_b1c_end = b2.end - 1 - max_dist_b1c_b2
+            max_b1c_end = b2.end - 1 - min_dist_b1c_b2
+            i_b1c_min = bisect_left(b1c_ends, min_b1c_end)
+            i_b1c_max = bisect_right(b1c_ends, max_b1c_end)
+            if i_b1c_min >= i_b1c_max:
+                continue
+            valid_b1cs = b1c_list[i_b1c_min:i_b1c_max]
+
+            # 5. Binary search for B3 (min_dist_b2_b3 <= b3.start - b2.end <= max_dist_b2_b3)
+            min_b3_start = b2.end + min_dist_b2_b3
+            max_b3_start = b2.end + max_dist_b2_b3
+            i_b3_min = bisect_left(b3_starts, min_b3_start)
+            i_b3_max = bisect_right(b3_starts, max_b3_start)
+            if i_b3_min >= i_b3_max:
+                continue
+            valid_b3s = b3_list[i_b3_min:i_b3_max]
+
+            # LoopB candidates for b1c-b2 region
+            loop_b_cand = None
+            lb_min = bisect_left(loop_b_starts, f2.start)
+            lb_max = bisect_right(loop_b_starts, b2.start)
+            for lcand in loop_b_list[lb_min:lb_max]:
+                if lcand.end <= b2.start:
+                    if loop_b_cand is None or abs(lcand.tm - b2.tm) < abs(loop_b_cand.tm - b2.tm):
+                        loop_b_cand = lcand
+
+            for f3 in valid_f3s:
+                if check_dimers and (check_heterodimer(f3.seq, f2.seq) or check_heterodimer(f3.seq, b2.seq)):
                     continue
-                    
-                # 3. Find B2 (F2-B2 inner amplicon size)
-                valid_b2s = [b2 for b2 in b2_list if min_dist_inner <= (b2.end - f2.start - 2) <= max_dist_inner]
-                
-                for b2 in valid_b2s:
-                    # Tm Checks for F1c relative to B2
-                    if f1c.tm - b2.tm < min_tm_diff_f1c_b1c:
+
+                for f1c in valid_f1cs:
+                    if f1c.tm - f3.tm < min_tm_diff_f1c_b1c or f1c.tm - f2.tm < min_tm_diff_f1c_b1c or f1c.tm - b2.tm < min_tm_diff_f1c_b1c:
                         continue
-                        
-                    # 4. Find B1c (B1c-B2 distance)
-                    valid_b1cs = [b1c for b1c in b1c_list if min_dist_b1c_b2 <= (b2.end - b1c.end - 1) <= max_dist_b1c_b2]
-                    if not valid_b1cs:
+
+                    if check_dimers and (check_heterodimer(f1c.seq, f2.seq) or check_heterodimer(f1c.seq, f3.seq) or check_heterodimer(f1c.seq, b2.seq)):
                         continue
-                        
-                    # 5. Find B3 (B2-B3 distance)
-                    valid_b3s = [b3 for b3 in b3_list if min_dist_b2_b3 <= (b3.start - b2.end) <= max_dist_b2_b3]
-                    
+
+                    # LoopF candidates for f2-f1c region
+                    loop_f_cand = None
+                    lf_min = bisect_left(loop_f_starts, f2.end)
+                    lf_max = bisect_right(loop_f_starts, f1c.start)
+                    for lcand in loop_f_list[lf_min:lf_max]:
+                        if lcand.end <= f1c.start:
+                            if loop_f_cand is None or abs(lcand.tm - f2.tm) < abs(loop_f_cand.tm - f2.tm):
+                                loop_f_cand = lcand
+
                     for b1c in valid_b1cs:
-                        # Tm Checks for B1c relative to F3, F2, B2
                         if b1c.tm - f3.tm < min_tm_diff_f1c_b1c or b1c.tm - f2.tm < min_tm_diff_f1c_b1c or b1c.tm - b2.tm < min_tm_diff_f1c_b1c:
                             continue
-                            
-                        # 6. Find F1c-B1c distance limit
+
                         if b1c.start - f1c.start > max_dist_f1c_b1c or b1c.start < f1c.end:
                             continue
-                            
+
+                        if check_dimers and (check_heterodimer(b1c.seq, f2.seq) or check_heterodimer(b1c.seq, f3.seq) or 
+                                            check_heterodimer(b1c.seq, f1c.seq) or check_heterodimer(b1c.seq, b2.seq)):
+                            continue
+
                         for b3 in valid_b3s:
-                            # Tm Checks for F1c and B1c relative to B3
                             if f1c.tm - b3.tm < min_tm_diff_f1c_b1c or b1c.tm - b3.tm < min_tm_diff_f1c_b1c:
                                 continue
-                                
-                            # 7. Check for heterodimer formations in this candidate set
-                            if check_dimers:
-                                primer_seqs = [f3.seq, f2.seq, f1c.seq, b1c.seq, b2.seq, b3.seq]
-                                if check_set_dimers(primer_seqs):
-                                    continue
-                                
-                            # 8. Identify optional Loop primers (LoopF and LoopB)
-                            loop_f_cand = None
-                            loop_b_cand = None
-                            for lcand in loop_list:
-                                # LoopF (strand -1, between F2 and F1c)
-                                if lcand.strand == -1 and f2.end <= lcand.start and lcand.end <= f1c.start:
-                                    if loop_f_cand is None or abs(lcand.tm - f2.tm) < abs(loop_f_cand.tm - f2.tm):
-                                        loop_f_cand = lcand
-                                # LoopB (strand 1, between B1c and B2)
-                                elif lcand.strand == 1 and b1c.end <= lcand.start and lcand.end <= b2.start:
-                                    if loop_b_cand is None or abs(lcand.tm - b2.tm) < abs(loop_b_cand.tm - b2.tm):
-                                        loop_b_cand = lcand
 
-                            # If all tests pass, we have a valid LAMP set!
+                            if check_dimers and (check_heterodimer(b3.seq, f2.seq) or check_heterodimer(b3.seq, f3.seq) or 
+                                                check_heterodimer(b3.seq, f1c.seq) or check_heterodimer(b3.seq, b2.seq) or 
+                                                check_heterodimer(b3.seq, b1c.seq)):
+                                continue
+
+                            # Compute shared target coverage across all core primers in set
+                            common_targets = None
+                            for cand_obj in [f3, f2, f1c, b1c, b2, b3]:
+                                m_targets = getattr(cand_obj, 'matched_targets', [])
+                                if m_targets:
+                                    if common_targets is None:
+                                        common_targets = set(m_targets)
+                                    else:
+                                        common_targets &= set(m_targets)
+                            
+                            common_target_list = sorted(list(common_targets)) if common_targets else []
+
                             tm_balance = abs(f2.tm - b2.tm) + abs(f3.tm - b3.tm)
                             lamp_set = {
                                 "F3": f3.to_dict(),
@@ -195,31 +226,22 @@ def assemble_sets(filtered_candidates: dict,
                                 "B2": b2.to_dict(),
                                 "B3": b3.to_dict(),
                                 "tm_balance": round(tm_balance, 4),
-                                "quality": _classify_quality(tm_balance)
+                                "quality": _classify_quality(tm_balance),
+                                "target_coverage_count": len(common_target_list),
+                                "target_coverage_list": common_target_list
                             }
                             if loop_f_cand:
                                 lamp_set["LoopF"] = loop_f_cand.to_dict()
                             if loop_b_cand:
                                 lamp_set["LoopB"] = loop_b_cand.to_dict()
 
-                            # Locus Deduplication: avoid returning near-identical sets for the same F2-B2 locus
                             locus_key = (f2.start, b2.start)
-                            existing_idx = None
-                            for idx, existing in enumerate(results):
-                                existing_key = (existing["F2"]["start"], existing["B2"]["start"])
-                                if existing_key == locus_key:
-                                    existing_idx = idx
-                                    break
+                            if locus_key not in locus_results or tm_balance < locus_results[locus_key]["tm_balance"]:
+                                locus_results[locus_key] = lamp_set
+                                if len(locus_results) >= max_sets:
+                                    sorted_results = sorted(locus_results.values(), key=lambda x: x["tm_balance"])
+                                    return _add_ranks(sorted_results[:max_sets])
 
-                            if existing_idx is not None:
-                                # Replace if new set has a better tm_balance
-                                if tm_balance < results[existing_idx]["tm_balance"]:
-                                    results[existing_idx] = lamp_set
-                            else:
-                                results.append(lamp_set)
-                            
-                            results.sort(key=lambda x: x["tm_balance"])
-                            if len(results) == max_sets:
-                                return _add_ranks(results)
+    sorted_results = sorted(locus_results.values(), key=lambda x: x["tm_balance"])
+    return _add_ranks(sorted_results[:max_sets])
 
-    return _add_ranks(results[:max_sets])

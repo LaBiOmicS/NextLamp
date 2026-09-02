@@ -4,15 +4,15 @@
 # ========================================================================
 
 # --- Inputs & Outputs ---
-target_fasta: "data/target_babesia_canis.fa"
-index_prefix: ["data/indexes/idx_targets", "data/indexes/idx_human", "data/indexes/idx_ticks", "data/indexes/idx_apicomplexa"]
+target_fasta: "data/apicomplexa_raw/ncbi_dataset/data/GCA_045269395.1/GCA_045269395.1_BrossiM_PMB_genomic.fna"
+index_prefix: ["data/indexes/idx_dog", "data/indexes/idx_cat", "data/indexes/idx_human", "data/indexes/idx_ticks", "data/indexes/idx_apicomplexa", "data/indexes/idx_targets"]
 targets_list: "data/targets_list.txt"
 background_list: "data/background_list.txt"
 out: "results/babesia_paper_export/raw_data/nextlamp_babesia_results.json"
 threads: 16
 max_sets: 10
 
-# --- Thermodynamic Thresholds ---
+# --- Thermodynamic & Specificity Thresholds ---
 min_gc: 30.0         # Minimum GC percentage for primers (%)
 max_gc: 70.0         # Maximum GC percentage for primers (%)
 min_tm: 55.0         # Minimum melting temperature (°C)
@@ -20,16 +20,19 @@ max_tm: 68.0         # Maximum melting temperature (°C)
 min_tm_diff: 3.0     # Minimum Tm difference between F1c/B1c and outer/inner primers (°C)
 check_dimers: true   # Enable self-dimer and heterodimer filtering
 include_loops: true  # Enable searching and displaying LoopF and LoopB primers
+min_target_coverage: 0.60  # Minimum target fraction across target genome assemblies (0.60 = 60% of Babesia assemblies)
+max_target_mismatches: 1   # Allow up to 1 mismatch when aligning primers against target Babesia genomes
+max_background_mismatches: 2 # Mismatches threshold for background filtering
 
 # --- Spatial & Amplicon Distance Constraints (bp) ---
 dist_f3_f2_min: 0    # F3 to F2 min distance
-dist_f3_f2_max: 20   # F3 to F2 max distance
-dist_f2_f1c_min: 40  # F2 to F1c min distance
-dist_f2_f1c_max: 60  # F2 to F1c max distance
+dist_f3_f2_max: 25   # F3 to F2 max distance
+dist_f2_f1c_min: 35  # F2 to F1c min distance
+dist_f2_f1c_max: 65  # F2 to F1c max distance
 dist_inner_min: 120  # Core amplicon min distance (F2 to B2)
-dist_inner_max: 180  # Core amplicon max distance (F2 to B2)
-dist_b1c_b2_min: 40  # B1c to B2 min distance
-dist_b1c_b2_max: 60  # B1c to B2 max distance
+dist_inner_max: 220  # Core amplicon max distance (F2 to B2)
+dist_b1c_b2_min: 35  # B1c to B2 min distance
+dist_b1c_b2_max: 65  # B1c to B2 max distance
 dist_b2_b3_min: 0    # B2 to B3 min distance
-dist_b2_b3_max: 20   # B2 to B3 max distance
-dist_f1c_b1c_max: 85 # Max distance between F1c and B1c
+dist_b2_b3_max: 25   # B2 to B3 max distance
+dist_f1c_b1c_max: 100 # Max distance between F1c and B1c

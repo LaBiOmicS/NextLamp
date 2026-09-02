@@ -132,8 +132,21 @@ NextLAMP generates a complete **FAIR Reproducibility Bundle** for every run:
 | `--generate-config` | `config.yaml` | Generate annotated YAML configuration template |
 | `--target-fasta` | `target.fa` | Path to target genome FASTA file |
 | `--index-prefix` | `db_idx` | Path prefix of Bowtie 2 index |
+| `--min-target-coverage` | `0.70` | Minimum target fraction across target genome assemblies (default: 1.0) |
+| `--max-target-mismatches` | `1` | Max mismatches allowed in target genomes (enforces 0 mismatches at 3' end anchor) |
+| `--max-background-mismatches` | `2` | Max mismatches threshold for background filtering |
 | `--threads` | `4` | Number of CPU threads for parallel processing |
 | `--out` | `results.json` | Output JSON file name |
+
+---
+
+## 🔬 Key Architectural & Algorithmic Features
+
+NextLAMP includes several state-of-the-art biological and bioinformatic innovations over legacy tools (like GLAPD):
+
+1. **1-bp High-Resolution Candidate Sampling (`step = 1bp`):** Full base-by-base candidate scanning across both strands (15 to 28 bp), maximizing primer candidate discovery space before specificity filtering.
+2. **Biological 3' End Anchor Rule (Seed Specificity):** Enforces **0 mismatches in the critical 3' end 5-bp anchor region** (required for Bst DNA polymerase extension), while allowing up to `max_target_mismatches` in non-critical 5'/internal regions across divergent target strains.
+3. **Multi-Index Early-Exit Screening:** Sequentially filters candidates across segmented Bowtie 2 indices (host, vector, background) with minimal RAM overhead.
 
 ---
 

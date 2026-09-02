@@ -28,6 +28,8 @@ DEFAULT_CONFIG = {
     "min_tm_diff": 3.0,
     "check_dimers": True,
     "include_loops": True,
+    "min_target_coverage": 1.0,
+    "min_targets_count": None,
     "data_prep": {
         "target_taxa": ["Babesia canis"],
         "common_taxa": ["Babesia"],

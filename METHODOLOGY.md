@@ -51,13 +51,13 @@ The **NextLAMP** algorithm evaluates 8 oligonucleotides per candidate set (F3, F
 
 ---
 
-## 🎯 4. Pan-Genome Target Conservation
+## 🎯 4. Pan-Genome Target Conservation & Biological 3' Anchor Specificity
 
-Instead of synthesizing a simple consensus sequence (which introduces IUPAC degenerate bases and reduces isothermal reaction sensitivity), NextLAMP implements **exact pan-genome target validation**:
+Instead of synthesizing a simple consensus sequence (which introduces IUPAC degenerate bases and reduces isothermal reaction sensitivity), NextLAMP implements **pan-genome target validation with biological 3' anchor specificity**:
 
-1. **Initial Candidate Generation:** Raw candidate primers are generated from a high-quality complete reference genome (`target_fasta`).
-2. **100% Pan-Coverage Validation:** During Bowtie 2 alignment against target accessions (`targets_list.txt`), each candidate primer is tested individually against all target assemblies.
-3. **Full Match Threshold:** A candidate primer is accepted if and only if it exhibits an **exact match (0 mismatches) across 100% of the target genomes** listed.
+1. **1-bp High-Resolution Candidate Generation:** Raw candidate primers are generated with base-by-base (`step = 1bp`) resolution from a high-quality reference genome (`target_fasta`) across both strands.
+2. **Pan-Coverage Validation:** During Bowtie 2 alignment against target accessions (`targets_list.txt`), candidates are tested across target assemblies with a configurable coverage fraction (`min_target_coverage: 0.60`).
+3. **Biological 3' End Anchor Rule:** To accommodate natural genomic divergence across strains without sacrificing amplification efficiency, NextLAMP permits up to **1 mismatch** in internal/5' regions, while strictly enforcing **0 mismatches in the 5-bp 3' end anchor region** required for *Bst* DNA polymerase extension.
 4. **Biological Advantage:** Guarantees that designed primers are 100% conserved across all known pathogen isolates without requiring degenerate primers.
 
 ---

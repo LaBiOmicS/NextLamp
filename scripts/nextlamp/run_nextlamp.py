@@ -35,6 +35,10 @@ def main():
     parser.add_argument("--no-check-dimers", action="store_true", help="Disable primer set heterodimer filtering")
     parser.add_argument("--include-loops", action="store_true", default=None, help="Enable searching and displaying LoopF and LoopB primers (default: True)")
     parser.add_argument("--no-loops", action="store_true", help="Disable Loop primer design")
+    parser.add_argument("--min-target-coverage", type=float, default=None, help="Minimum fraction of target genomes required for candidate primers (0.0 - 1.0, default: 1.0 = 100%)")
+    parser.add_argument("--min-targets-count", type=int, default=None, help="Minimum count of target genomes required for candidate primers (overrides coverage fraction)")
+    parser.add_argument("--max-target-mismatches", type=int, default=None, help="Maximum mismatches allowed when matching target genomes (default: 1)")
+    parser.add_argument("--max-background-mismatches", type=int, default=None, help="Maximum mismatches allowed before treating alignment as background hit (default: 2)")
     parser.add_argument("--threads", type=int, default=None, help="Number of CPU threads to use for parallel processing (default: 4)")
     parser.add_argument("--gpu", action="store_true", help="Enable NVIDIA CUDA GPU acceleration for candidate scanning and alignment")
 
@@ -81,6 +85,10 @@ def main():
     if args.no_check_dimers: cfg["check_dimers"] = False
     if args.include_loops: cfg["include_loops"] = True
     if args.no_loops: cfg["include_loops"] = False
+    if args.min_target_coverage is not None: cfg["min_target_coverage"] = args.min_target_coverage
+    if args.min_targets_count is not None: cfg["min_targets_count"] = args.min_targets_count
+    if args.max_target_mismatches is not None: cfg["max_target_mismatches"] = args.max_target_mismatches
+    if args.max_background_mismatches is not None: cfg["max_background_mismatches"] = args.max_background_mismatches
     if args.threads is not None: cfg["threads"] = args.threads
     if args.gpu: cfg["gpu"] = True
 
@@ -113,7 +121,11 @@ def main():
             min_tm_diff_f1c_b1c=cfg["min_tm_diff"],
             check_dimers=cfg["check_dimers"],
             threads=cfg["threads"],
-            use_gpu=cfg.get("gpu", False)
+            use_gpu=cfg.get("gpu", False),
+            min_target_coverage=cfg.get("min_target_coverage", 1.0),
+            min_targets_count=cfg.get("min_targets_count", None),
+            max_target_mismatches=cfg.get("max_target_mismatches", 1),
+            max_background_mismatches=cfg.get("max_background_mismatches", 2)
         )
         
         export_results(

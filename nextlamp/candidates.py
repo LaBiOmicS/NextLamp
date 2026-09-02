@@ -3,18 +3,19 @@ from Bio import SeqIO
 from .thermo import calculate_tm, calculate_gc, has_hairpin, has_self_dimer
 
 class CandidatePrimer:
-    __slots__ = ('seq', 'start', 'end', 'strand', 'tm', 'gc')
+    __slots__ = ('seq', 'start', 'end', 'strand', 'tm', 'gc', 'matched_targets')
     
-    def __init__(self, seq: str, start: int, end: int, strand: int, tm: float, gc: float):
+    def __init__(self, seq: str, start: int, end: int, strand: int, tm: float, gc: float, matched_targets: list[str] = None):
         self.seq = seq
         self.start = start
         self.end = end
         self.strand = strand  # 1 for forward, -1 for reverse complement
         self.tm = tm
         self.gc = gc
+        self.matched_targets = matched_targets if matched_targets is not None else []
 
     def to_dict(self):
-        return {
+        d = {
             "seq": self.seq,
             "start": self.start,
             "end": self.end,
@@ -22,6 +23,10 @@ class CandidatePrimer:
             "tm": self.tm,
             "gc": self.gc
         }
+        if self.matched_targets:
+            d["matched_targets"] = self.matched_targets
+            d["matched_targets_count"] = len(self.matched_targets)
+        return d
 
 def find_candidates_in_sequence(seq_str: str, 
                                 min_len: int = 18, 
@@ -37,13 +42,13 @@ def find_candidates_in_sequence(seq_str: str,
     seq_str_upper = seq_str.upper()
     seq_len = len(seq_str_upper)
 
-    from Bio.Seq import Seq
-    rev_comp_seq = str(Seq(seq_str_upper).reverse_complement())
+    _comp_table = str.maketrans("ACGTacgtNn", "TGCAtgcaNn")
+    rev_comp_seq = seq_str_upper.translate(_comp_table)[::-1]
 
     # Fast single pass for forward and reverse strands
     for strand, s_str in [(1, seq_str_upper), (-1, rev_comp_seq)]:
-        for i in range(0, seq_len - min_len + 1, 2):  # Step by 2bp for fast candidate sampling
-            for length in range(min_len, max_len + 1, 2):
+        for i in range(0, seq_len - min_len + 1):  # Step by 1bp for complete candidate coverage
+            for length in range(min_len, max_len + 1): # Step by 1bp for all primer lengths
                 if i + length > seq_len:
                     break
                 sub_seq = s_str[i : i + length]

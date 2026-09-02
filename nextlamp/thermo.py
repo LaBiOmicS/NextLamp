@@ -97,7 +97,7 @@ def has_hairpin(sequence: str, min_stem: int = 4, min_loop: int = 3, max_loop: i
                 return True
     return False
 
-@functools.lru_cache(maxsize=65536)
+@functools.lru_cache(maxsize=131072)
 def has_self_dimer(sequence: str, max_contiguous_matches: int = 6) -> bool:
     """
     Check if the sequence can dimerize with itself (Watson-Crick pairing).
@@ -107,19 +107,14 @@ def has_self_dimer(sequence: str, max_contiguous_matches: int = 6) -> bool:
     rev_comp = seq_upper.translate(_comp_table)[::-1]
     seq_len = len(sequence)
 
-    for shift in range(-seq_len + 1, seq_len):
-        matches = 0
-        for i in range(seq_len):
-            j = i + shift
-            if 0 <= j < seq_len:
-                if seq_upper[i] == rev_comp[j]:
-                    matches += 1
-                    # 3'-end dimer check (critical for extension)
-                    if (i >= seq_len - 4 or j >= seq_len - 4) and matches >= 4:
-                        return True
-                    if matches >= max_contiguous_matches:
-                        return True
-                else:
-                    matches = 0
-    return False
+    # 1. Contiguous match check across entire primer length
+    for i in range(seq_len - max_contiguous_matches + 1):
+        if seq_upper[i:i + max_contiguous_matches] in rev_comp:
+            return True
 
+    # 2. 3'-end dimer check (4bp match involving 3' tail)
+    tail3 = seq_upper[-4:]
+    if tail3 in rev_comp or rev_comp[-4:] in seq_upper:
+        return True
+
+    return False

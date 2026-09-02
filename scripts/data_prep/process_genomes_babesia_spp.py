@@ -34,9 +34,26 @@ else:
     print(f"Error: {report_path} not found. Please ensure Apicomplexa genomes are downloaded and extracted.")
     exit(1)
 
-# Find all FNA files
-apicomplexa_fnas = glob.glob(os.path.join(apicomplexa_extract, "ncbi_dataset", "data", "GCA_*", "*.fna")) + \
-                   glob.glob(os.path.join(apicomplexa_extract, "ncbi_dataset", "data", "GCF_*", "*.fna"))
+import re
+
+def normalize_acc(acc_str):
+    if acc_str.startswith("GCA_"):
+        return "GCF_" + acc_str[4:]
+    return acc_str
+
+# Find all FNA files and deduplicate GCA/GCF pairs (prefer RefSeq GCF_)
+all_apicomplexa_fnas = glob.glob(os.path.join(apicomplexa_extract, "ncbi_dataset", "data", "GCA_*", "*.fna")) + \
+                       glob.glob(os.path.join(apicomplexa_extract, "ncbi_dataset", "data", "GCF_*", "*.fna"))
+
+fna_by_num_id = {}
+for fna in all_apicomplexa_fnas:
+    match = re.search(r'G[CFL]_[0-9]{9}\.[0-9]+', fna)
+    acc = match.group(0) if match else os.path.basename(fna)
+    num_id = re.sub(r'^(GCA_|GCF_)', '', acc)
+    if num_id not in fna_by_num_id or acc.startswith("GCF_"):
+        fna_by_num_id[num_id] = fna
+
+apicomplexa_fnas = sorted(list(fna_by_num_id.values()))
 dog_fnas = glob.glob(os.path.join(dog_extract, "ncbi_dataset", "data", "GCF_*", "*.fna"))
 
 target_fasta_out = os.path.join(data_dir, "target_babesia_canis.fa")  # Template sequence for candidate generation (B. canis)
@@ -50,56 +67,76 @@ background_headers = []
 
 print("Processing and sorting genomes into Babesia (targets) and non-Babesia (background)...")
 
+def read_fasta_as_pseudogenome(fna_path, spacer_len=100):
+    contigs = []
+    current_seq = []
+    with open(fna_path, "r") as f:
+        for line in f:
+            if line.startswith(">"):
+                if current_seq:
+                    contigs.append("".join(current_seq))
+                    current_seq = []
+            else:
+                current_seq.append(line.strip())
+        if current_seq:
+            contigs.append("".join(current_seq))
+    return ("N" * spacer_len).join(contigs)
+
 # Open files to write target list, background list, and full database
 with open(db_completo_out, "w") as db_out, open(target_fasta_out, "w") as template_out:
     # Process Apicomplexa
     for fna in apicomplexa_fnas:
-        # Check if this fna belongs to Babesia
-        is_babesia = False
+        # Check if this fna belongs to Babesia and capture accession
+        matched_acc = None
         for acc in babesia_accessions:
             if acc in fna:
-                is_babesia = True
+                matched_acc = acc
                 break
         
-        # Check if this is the template Babesia canis (GCA_045269395.1)
+        if not matched_acc:
+            # Extract assembly accession from directory name
+            parts = fna.split(os.sep)
+            for part in parts:
+                if part.startswith("GCA_") or part.startswith("GCF_"):
+                    matched_acc = part
+                    break
+            if not matched_acc:
+                matched_acc = os.path.basename(fna)
+
+        is_babesia = matched_acc in babesia_accessions
         is_template = "GCA_045269395.1" in fna
+        norm_acc = normalize_acc(matched_acc)
         
-        with open(fna, "r") as f:
-            for line in f:
-                if line.startswith(">"):
-                    header = line[1:].strip().split()[0]
-                    if is_babesia:
-                        target_headers.append(header)
-                    else:
-                        background_headers.append(header)
-                    db_out.write(line)
-                    if is_template:
-                        template_out.write(line)
-                else:
-                    db_out.write(line)
-                    if is_template:
-                        template_out.write(line)
+        pseudo_seq = read_fasta_as_pseudogenome(fna, spacer_len=100)
+        
+        if is_babesia:
+            target_headers.append((norm_acc, norm_acc))
+            db_out.write(f">{norm_acc}\n{pseudo_seq}\n")
+            if is_template:
+                template_out.write(f">{norm_acc}\n{pseudo_seq}\n")
+        else:
+            background_headers.append((norm_acc, norm_acc))
+            db_out.write(f">{norm_acc}\n{pseudo_seq}\n")
+            if is_template:
+                template_out.write(f">{norm_acc}\n{pseudo_seq}\n")
                         
     # Process Dog (Dog is always background)
     for fna in dog_fnas:
-        with open(fna, "r") as f:
-            for line in f:
-                if line.startswith(">"):
-                    header = line[1:].strip().split()[0]
-                    background_headers.append(header)
-                    db_out.write(line)
-                else:
-                    db_out.write(line)
+        matched_acc = "Dog_GCF_011100685.1"
+        pseudo_seq = read_fasta_as_pseudogenome(fna, spacer_len=100)
+        background_headers.append((matched_acc, matched_acc))
+        db_out.write(f">{matched_acc}\n{pseudo_seq}\n")
 
 # Write lists
 with open(targets_list_file, "w") as f:
-    for h in target_headers:
-        f.write(h + "\n")
+    for h, acc in target_headers:
+        f.write(f"{h}\t{acc}\n")
 
 with open(background_list_file, "w") as f:
-    for h in background_headers:
-        f.write(h + "\n")
+    for h, acc in background_headers:
+        f.write(f"{h}\t{acc}\n")
 
-print(f"Total target sequences (all Babesia): {len(target_headers)} written to {targets_list_file}")
-print(f"Total background sequences (non-Babesia + Dog): {len(background_headers)} written to {background_list_file}")
+unique_target_genomes = len(set(acc for _, acc in target_headers))
+print(f"Total target sequences: {len(target_headers)} pseudo-genomes spanning {unique_target_genomes} unique Babesia assemblies, written to {targets_list_file}")
+print(f"Total background sequences: {len(background_headers)} pseudo-genomes written to {background_list_file}")
 print("All tasks completed successfully!")

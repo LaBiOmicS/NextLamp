@@ -92,20 +92,32 @@ def export_results(results: list[dict],
         base, _ = os.path.splitext(out_json)
         out_tsv = f"{base}_primers.tsv"
 
+    total_targets_count = len(params.get("targets", []))
+
+    # 2. Export TSV (Lab ordering table with Target Specificity)
+    if not out_tsv:
+        base, _ = os.path.splitext(out_json)
+        out_tsv = f"{base}_primers.tsv"
+
     with open(out_tsv, "w") as f:
-        f.write("Rank\tQuality_Grade\tQuality_Score_100\tTm_Balance\tPrimer_Name\tSequence_5to3\tStart_Pos\tEnd_Pos\tLength_bp\tTm_C\tGC_percent\tStrand\n")
+        f.write("Rank\tQuality_Grade\tQuality_Score_100\tTm_Balance\tSet_Matched_Targets_Count\tSet_Matched_Targets\tPrimer_Name\tSequence_5to3\tStart_Pos\tEnd_Pos\tLength_bp\tTm_C\tGC_percent\tStrand\tPrimer_Matched_Targets_Count\tPrimer_Matched_Targets\n")
         for pset in results:
             rank = pset.get("rank", 0)
             metrics = pset.get("elamp_metrics", {})
             grade = metrics.get("grade", pset.get("quality", "N/A"))
             qscore = metrics.get("quality_score", 0.0)
             tm_bal = pset.get("tm_balance", 0.0)
+            set_tgt_count = pset.get("target_coverage_count", total_targets_count)
+            set_tgt_list = ",".join(pset.get("target_coverage_list", []))
 
             for pname in ["F3", "F2", "F1c", "LoopF", "B1c", "LoopB", "B2", "B3"]:
                 if pname in pset:
                     p = pset[pname]
                     strand_str = "+" if p.get("strand", 1) == 1 else "-"
-                    f.write(f"{rank}\t{grade}\t{qscore}\t{tm_bal}\t{pname}\t{p['seq']}\t{p['start']}\t{p['end']}\t{len(p['seq'])}\t{p['tm']}\t{p['gc']}\t{strand_str}\n")
+                    p_tgt_list = p.get("matched_targets", [])
+                    p_tgt_count = p.get("matched_targets_count", len(p_tgt_list))
+                    p_tgt_str = ",".join(p_tgt_list)
+                    f.write(f"{rank}\t{grade}\t{qscore}\t{tm_bal}\t{set_tgt_count}\t{set_tgt_list}\t{pname}\t{p['seq']}\t{p['start']}\t{p['end']}\t{len(p['seq'])}\t{p['tm']}\t{p['gc']}\t{strand_str}\t{p_tgt_count}\t{p_tgt_str}\n")
 
     # 3. Export Formatted Summary Text Report (Human Interpretation)
     if not out_txt:
@@ -114,13 +126,14 @@ def export_results(results: list[dict],
 
     with open(out_txt, "w") as f:
         f.write("========================================================================\n")
-        f.write("  NextLAMP: Whole-Genome LAMP Primer Design Report (with eLAMP Assessment)\n")
+        f.write("  NextLAMP: Whole-Genome LAMP Primer Design Report (with Target Specificity)\n")
         f.write("========================================================================\n\n")
         f.write(f"Execution Date:       {timestamp}\n")
         f.write(f"Target FASTA:         {params.get('target_fasta')}\n")
         f.write(f"Target SHA256:        {target_hash}\n")
-        f.write(f"Target Genomes:       {len(params.get('targets', []))}\n")
-        f.write(f"Background Genomes:   {len(params.get('backgrounds', []))}\n")
+        f.write(f"Target Genomes DB:    {total_targets_count}\n")
+        f.write(f"Background Genomes DB:{len(params.get('backgrounds', []))}\n")
+        f.write(f"Min Target Coverage:  {params.get('min_target_coverage', 1.0)*100:.1f}%\n")
         f.write(f"Threads Used:         {params.get('threads', 4)}\n\n")
 
         f.write("--- Design Parameters ---\n")
@@ -140,7 +153,7 @@ def export_results(results: list[dict],
         f.write(f"  Final Designed Sets Output:    {len(results)}\n\n")
 
         f.write("========================================================================\n")
-        f.write("  Designed LAMP Primer Sets (Ranked by eLAMP Quality Score)\n")
+        f.write("  Designed LAMP Primer Sets (Ranked by eLAMP Quality Score & Target Coverage)\n")
         f.write("========================================================================\n")
         for pset in results:
             rank = pset.get("rank", 0)
@@ -148,10 +161,20 @@ def export_results(results: list[dict],
             grade = metrics.get("grade", pset.get("quality", "N/A"))
             qscore = metrics.get("quality_score", 0.0)
             tm_bal = pset.get("tm_balance", 0.0)
+            set_tgt_count = pset.get("target_coverage_count", total_targets_count)
+            set_tgt_list = pset.get("target_coverage_list", [])
 
             f.write(f"\n[SET #{rank}] Grade: {grade} | eLAMP Score: {qscore}/100 | Tm Balance: {tm_bal:.4f}\n")
+            if total_targets_count > 0:
+                pct = (set_tgt_count / total_targets_count) * 100
+                f.write(f"  Target Specificity Coverage: {set_tgt_count}/{total_targets_count} targets ({pct:.1f}%)\n")
+            if set_tgt_list:
+                f.write(f"  Specific Target Genomes Matched: {', '.join(set_tgt_list)}\n")
+
             for pname in ["F3", "F2", "F1c", "LoopF", "B1c", "LoopB", "B2", "B3"]:
                 if pname in pset:
                     p = pset[pname]
-                    f.write(f"  {pname:5s}: 5'- {p['seq']} -3'  (pos: {p['start']}, Tm: {p['tm']:.1f}°C, GC: {p['gc']:.1f}%)\n")
+                    p_tgt_list = p.get("matched_targets", [])
+                    p_tgt_str = f" [Matched: {len(p_tgt_list)} targets]" if p_tgt_list else ""
+                    f.write(f"  {pname:5s}: 5'- {p['seq']} -3'  (pos: {p['start']}, Tm: {p['tm']:.1f}°C, GC: {p['gc']:.1f}%){p_tgt_str}\n")
         f.write("\n========================================================================\n")

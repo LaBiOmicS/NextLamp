@@ -120,6 +120,58 @@ nextlamp --config my_experiment.yaml
 
 ---
 
+### 3.1 Four Core Design Modes (Commonality vs. Specificity)
+
+NextLAMP supports four fundamental modes of genomic primer design depending on whether you need strain conservation (commonality) and host/off-target exclusion (specificity):
+
+#### Mode 1: Design LAMP primers for a single sequence without commonality or specificity
+*Design primers purely based on thermodynamic and spatial constraints from a single target sequence, ignoring multi-strain alignment and background filtering.*
+```bash
+nextlamp \
+    --target-fasta data/single_target.fa \
+    --index-prefix data/dummy_idx \
+    --targets-list data/single_target.txt \
+    --background-list /dev/null \
+    --out results/mode1_single.json
+```
+
+#### Mode 2: Design common LAMP primers without taking care of specificity
+*Design conserved primers across multiple target strains/genomes (pan-target consensus), without filtering against host or background genomes.*
+```bash
+nextlamp \
+    --target-fasta data/target_reference.fa \
+    --index-prefix data/indexes/idx_targets \
+    --targets-list data/all_target_strains.txt \
+    --background-list /dev/null \
+    --min-target-coverage 1.0 \
+    --out results/mode2_common.json
+```
+
+#### Mode 3: Design specific LAMP primers without taking care of commonality
+*Design primers specific to a single target sequence that DO NOT cross-react with background host/vector/off-target species, without requiring multi-strain conservation.*
+```bash
+nextlamp \
+    --target-fasta data/single_target.fa \
+    --index-prefix data/indexes/idx_background \
+    --targets-list data/single_target.txt \
+    --background-list data/background_species.txt \
+    --out results/mode3_specific.json
+```
+
+#### Mode 4: Design common AND specific LAMP primers (Full Pan-Target Assay)
+*Design primers conserved across all (or a fraction of) target strains AND 100% specific against host/vector/off-target background databases.*
+```bash
+nextlamp \
+    --target-fasta data/target_babesia_canis.fa \
+    --index-prefix "data/indexes/idx_targets" "data/indexes/idx_human" "data/indexes/idx_ticks" \
+    --targets-list data/targets_list.txt \
+    --background-list data/background_list.txt \
+    --min-target-coverage 0.80 \
+    --out results/mode4_common_and_specific.json
+```
+
+---
+
 ## 4. Python API Integration
 
 Integrate NextLAMP directly into Python data science pipelines or Jupyter Notebooks:
@@ -142,7 +194,7 @@ pipeline = NextLampPipeline(
     background_list_file=dataset["background_list"]
 )
 
-results, params, stats = pipeline.run(min_gc=35.0, max_gc=65.0, threads=4)
+results, params, stats = pipeline.run(min_gc=35.0, max_gc=65.0, min_target_coverage=0.8, threads=4)
 
 # Step 3: Save Reproducibility Bundle
 export_results(results, params, stats, out_json="ecoli_results.json")
@@ -155,13 +207,13 @@ export_results(results, params, stats, out_json="ecoli_results.json")
 NextLAMP automatically outputs 3 formatted files:
 
 1. **`results_primers.tsv` (Laboratory Ordering Table)**
-   - Tab-separated spreadsheet containing primer names ($F3, F2, F1c, B1c, B2, B3$), 5'→3' sequences, positions, lengths, $T_m$ (°C), and GC%. Ready to copy-paste for oligo synthesis.
+   - Tab-separated spreadsheet containing primer names ($F3, F2, F1c, B1c, B2, B3$), 5'→3' sequences, positions, lengths, $T_m$ (°C), GC%, and **Target Specificity Coverage** (matched target count and target species names). Ready to copy-paste for oligo synthesis.
 
 2. **`results_report.txt` (Human Summary Report)**
-   - Human-readable summary detailing selection funnel statistics and ranking primer sets by thermal balance score ($tm\_balance = |T_m(F2) - T_m(B2)| + |T_m(F3) - T_m(B3)|$).
+   - Human-readable summary detailing selection funnel statistics, **Matched Target Genomes**, and ranking primer sets by thermal balance score ($tm\_balance = |T_m(F2) - T_m(B2)| + |T_m(F3) - T_m(B3)|$).
 
 3. **`results.json` (Scientific Reproducibility Bundle)**
-   - Machine-readable JSON recording cryptographic target FASTA SHA-256 hash, execution timestamp, complete parameter dictionary, and all candidate evaluation metrics.
+   - Machine-readable JSON recording cryptographic target FASTA SHA-256 hash, execution timestamp, complete parameter dictionary, candidate evaluation metrics, and target coverage lists.
 
 ---
 
@@ -170,9 +222,11 @@ NextLAMP automatically outputs 3 formatted files:
 | Parameter Key | CLI Flag | Default | Description |
 | :--- | :--- | :---: | :--- |
 | `target_fasta` | `--target-fasta` | *Required* | Path to primary target FASTA file |
-| `index_prefix` | `--index-prefix` | *Required* | Bowtie 2 index path prefix |
+| `index_prefix` | `--index-prefix` | *Required* | Bowtie 2 index path prefix (or list of prefixes) |
 | `targets_list` | `--targets-list` | *Required* | File with sequence headers of target genomes |
 | `background_list` | `--background-list` | *Required* | File with sequence headers of background genomes |
+| `min_target_coverage` | `--min-target-coverage` | `1.0` | Minimum fraction of target genomes required for candidate primers (0.0 - 1.0; 1.0 = 100%) |
+| `min_targets_count` | `--min-targets-count` | `None` | Minimum exact count of target genomes required (overrides fraction) |
 | `min_gc` | `--min-gc` | `30.0` | Minimum primer GC content (%) |
 | `max_gc` | `--max-gc` | `70.0` | Maximum primer GC content (%) |
 | `min_tm` | `--min-tm` | `55.0` | Minimum primer melting temperature ($T_m$, °C) |

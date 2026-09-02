@@ -37,10 +37,10 @@ class NextLampPipeline:
         self.targets = self._load_list(os.path.abspath(targets_list_file))
         self.backgrounds = self._load_list(os.path.abspath(background_list_file))
         
-    def _load_list(self, filepath: str) -> list[str]:
+    def _load_list(self, filepath: str) -> dict[str, str]:
         if not os.path.exists(filepath):
             raise FileNotFoundError(f"File {filepath} not found.")
-        results = []
+        results = {}
         with open(filepath, "r") as f:
             for line in f:
                 line = line.strip()
@@ -49,8 +49,10 @@ class NextLampPipeline:
                 if line.startswith(">"):
                     line = line[1:]
                 parts = line.split()
-                if parts:
-                    results.append(parts[0])
+                if len(parts) >= 2:
+                    results[parts[0]] = parts[1]
+                elif parts:
+                    results[parts[0]] = parts[0]
         return results
 
     def run(self, 
@@ -73,7 +75,11 @@ class NextLampPipeline:
             min_tm_diff_f1c_b1c: float = 3.0,
             check_dimers: bool = True,
             threads: int = 4,
-            use_gpu: bool = False) -> list[dict]:
+            use_gpu: bool = False,
+            min_target_coverage: float = 1.0,
+            min_targets_count: int = None,
+            max_target_mismatches: int = 1,
+            max_background_mismatches: int = 2) -> list[dict]:
         if use_gpu:
             try:
                 import torch
@@ -96,7 +102,11 @@ class NextLampPipeline:
             index_prefix=self.index_prefix,
             targets_list=self.targets,
             background_list=self.backgrounds,
-            threads=threads
+            max_target_mismatches=max_target_mismatches,
+            max_background_mismatches=max_background_mismatches,
+            threads=threads,
+            min_target_coverage=min_target_coverage,
+            min_targets_count=min_targets_count
         )
         print(f"Filtered candidates: F3_B3={len(filtered['F3_B3'])}, F2_B2={len(filtered['F2_B2'])}, F1c_B1c={len(filtered['F1c_B1c'])}")
         

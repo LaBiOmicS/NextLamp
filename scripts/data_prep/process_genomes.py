@@ -88,9 +88,21 @@ apicomplexa_bg_fasta_out = os.path.join(data_dir, "bg_apicomplexa.fa")
 targets_list_file = os.path.join(data_dir, "targets_list.txt")
 background_list_file = os.path.join(data_dir, "background_list.txt")
 
-# B. canis genome identifier
-apicomplexa_fnas = glob.glob(os.path.join(apicomplexa_extract, "ncbi_dataset", "data", "GCA_*", "*.fna")) + \
-                   glob.glob(os.path.join(apicomplexa_extract, "ncbi_dataset", "data", "GCF_*", "*.fna"))
+import re
+
+# Find all FNA files and deduplicate GCA/GCF pairs (prefer RefSeq GCF_)
+all_apicomplexa_fnas = glob.glob(os.path.join(apicomplexa_extract, "ncbi_dataset", "data", "GCA_*", "*.fna")) + \
+                       glob.glob(os.path.join(apicomplexa_extract, "ncbi_dataset", "data", "GCF_*", "*.fna"))
+
+fna_by_num_id = {}
+for fna in all_apicomplexa_fnas:
+    match = re.search(r'G[CFL]_[0-9]{9}\.[0-9]+', fna)
+    acc = match.group(0) if match else os.path.basename(fna)
+    num_id = re.sub(r'^(GCA_|GCF_)', '', acc)
+    if num_id not in fna_by_num_id or acc.startswith("GCF_"):
+        fna_by_num_id[num_id] = fna
+
+apicomplexa_fnas = sorted(list(fna_by_num_id.values()))
 
 dog_fnas = glob.glob(os.path.join(dog_extract, "ncbi_dataset", "data", "GCF_*", "*.fna"))
 
@@ -158,6 +170,26 @@ for fna in apicomplexa_fnas:
 
 print(f"Filtering reduced Apicomplexa FASTA files from {len(apicomplexa_fnas)} to {len(filtered_apicomplexa_fnas)} (42 targets + {len(apicomplexa_bg_selected_accs)} background).")
 
+def normalize_acc(acc_str):
+    if acc_str.startswith("GCA_"):
+        return "GCF_" + acc_str[4:]
+    return acc_str
+
+def read_fasta_as_pseudogenome(fna_path, spacer_len=100):
+    contigs = []
+    current_seq = []
+    with open(fna_path, "r") as f:
+        for line in f:
+            if line.startswith(">"):
+                if current_seq:
+                    contigs.append("".join(current_seq))
+                    current_seq = []
+            else:
+                current_seq.append(line.strip())
+        if current_seq:
+            contigs.append("".join(current_seq))
+    return ("N" * spacer_len).join(contigs)
+
 # Write segmented files
 with open(target_fasta_out, "w") as target_out, \
      open(apicomplexa_bg_fasta_out, "w") as bg_api_out, \
@@ -168,81 +200,82 @@ with open(target_fasta_out, "w") as target_out, \
     
     # Process Apicomplexa (Targets vs Background)
     for fna in filtered_apicomplexa_fnas:
-        is_target = any(acc in fna for acc in babesia_accessions)
-        with open(fna, "r") as f:
-            for line in f:
-                if line.startswith(">"):
-                    header = line[1:].strip().split()[0]
-                    if is_target:
-                        target_headers.append(header)
-                        target_out.write(line)
-                    else:
-                        background_headers.append(header)
-                        bg_api_out.write(line)
-                else:
-                    if is_target:
-                        target_out.write(line)
-                    else:
-                        bg_api_out.write(line)
+        matched_acc = None
+        for acc in babesia_accessions:
+            if acc in fna:
+                matched_acc = acc
+                break
+        if not matched_acc:
+            parts = fna.split(os.sep)
+            for part in parts:
+                if part.startswith("GCA_") or part.startswith("GCF_"):
+                    matched_acc = part
+                    break
+            if not matched_acc:
+                matched_acc = os.path.basename(fna)
+
+        is_target = matched_acc in babesia_accessions
+        norm_acc = normalize_acc(matched_acc)
+        pseudo_seq = read_fasta_as_pseudogenome(fna, spacer_len=100)
+
+        if is_target:
+            target_headers.append((norm_acc, norm_acc))
+            target_out.write(f">{norm_acc}\n{pseudo_seq}\n")
+        else:
+            background_headers.append((norm_acc, norm_acc))
+            bg_api_out.write(f">{norm_acc}\n{pseudo_seq}\n")
                         
     # Process Dog
     for fna in dog_fnas:
-        with open(fna, "r") as f:
-            for line in f:
-                if line.startswith(">"):
-                    header = line[1:].strip().split()[0]
-                    background_headers.append(header)
-                    dog_out.write(line)
-                else:
-                    dog_out.write(line)
+        matched_acc = "Dog_GCF_011100685.1"
+        pseudo_seq = read_fasta_as_pseudogenome(fna, spacer_len=100)
+        background_headers.append((matched_acc, matched_acc))
+        dog_out.write(f">{matched_acc}\n{pseudo_seq}\n")
 
     # Process Cat
     for fna in cat_fnas:
-        with open(fna, "r") as f:
-            for line in f:
-                if line.startswith(">"):
-                    header = line[1:].strip().split()[0]
-                    background_headers.append(header)
-                    cat_out.write(line)
-                else:
-                    cat_out.write(line)
+        matched_acc = "Cat_GCF_018350175.1"
+        pseudo_seq = read_fasta_as_pseudogenome(fna, spacer_len=100)
+        background_headers.append((matched_acc, matched_acc))
+        cat_out.write(f">{matched_acc}\n{pseudo_seq}\n")
 
     # Process Human
     human_fnas = glob.glob(os.path.join(human_extract, "ncbi_dataset", "data", "GCF_*", "*.fna")) + \
                  glob.glob(os.path.join(human_extract, "ncbi_dataset", "data", "GCA_*", "*.fna"))
     print(f"Found {len(human_fnas)} Human genomic FASTA files.")
     for fna in human_fnas:
-        with open(fna, "r") as f:
-            for line in f:
-                if line.startswith(">"):
-                    header = line[1:].strip().split()[0]
-                    background_headers.append(header)
-                    human_out.write(line)
-                else:
-                    human_out.write(line)
+        matched_acc = "Human_GRCh38.p14"
+        pseudo_seq = read_fasta_as_pseudogenome(fna, spacer_len=100)
+        background_headers.append((matched_acc, matched_acc))
+        human_out.write(f">{matched_acc}\n{pseudo_seq}\n")
 
     # Process Ticks
     for fna in ticks_fnas:
-        with open(fna, "r") as f:
-            for line in f:
-                if line.startswith(">"):
-                    header = line[1:].strip().split()[0]
-                    background_headers.append(header)
-                    ticks_out.write(line)
-                else:
-                    ticks_out.write(line)
+        matched_acc = None
+        parts = fna.split(os.sep)
+        for part in parts:
+            if part.startswith("GCA_") or part.startswith("GCF_"):
+                matched_acc = part
+                break
+        if not matched_acc:
+            matched_acc = os.path.basename(fna)
+        norm_acc = normalize_acc(matched_acc)
+        pseudo_seq = read_fasta_as_pseudogenome(fna, spacer_len=100)
+        background_headers.append((norm_acc, norm_acc))
+        ticks_out.write(f">{norm_acc}\n{pseudo_seq}\n")
 
 # Write sequence lists
 with open(targets_list_file, "w") as f:
-    for h in target_headers:
-        f.write(h + "\n")
+    for h, acc in target_headers:
+        f.write(f"{h}\t{acc}\n")
 
 with open(background_list_file, "w") as f:
-    for h in background_headers:
-        f.write(h + "\n")
+    for h, acc in background_headers:
+        f.write(f"{h}\t{acc}\n")
 
-print(f"Target sequences written: {len(target_headers)} to {targets_list_file}")
-print(f"Background sequences written: {len(background_headers)} to {background_list_file}")
+unique_target_genomes = len(set(acc for _, acc in target_headers))
+print(f"Target sequences written: {len(target_headers)} pseudo-genomes spanning {unique_target_genomes} unique Babesia assemblies to {targets_list_file}")
+print(f"Background sequences written: {len(background_headers)} pseudo-genomes to {background_list_file}")
 
 # 6. Build Bowtie index (Commented out to run on SLURM later)
 # index_prefix = os.path.join(data_dir, "db_completo_idx")
