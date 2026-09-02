@@ -19,8 +19,8 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "nextlamp=scripts.nextlamp.run_nextlamp:main",
-            "nextlamp-prep=scripts.nextlamp.prep_data:main",
+            "nextlamp=nextlamp.cli:main",
+            "nextlamp-prep=nextlamp.prep_data:main",
             "nextlamp-test=nextlamp.tests.test_subsample:main",
             "nextlamp-compare=nextlamp.tests.glapd_comparison.run_comparison:main",
             "nextlamp-compare-loops=nextlamp.tests.glapd_comparison.run_parallel_loop_evaluation:main",
