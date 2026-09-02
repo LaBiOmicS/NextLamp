@@ -35,7 +35,7 @@ def main():
     parser.add_argument("--no-check-dimers", action="store_true", help="Disable primer set heterodimer filtering")
     parser.add_argument("--include-loops", action="store_true", default=None, help="Enable searching and displaying LoopF and LoopB primers (default: True)")
     parser.add_argument("--no-loops", action="store_true", help="Disable Loop primer design")
-    parser.add_argument("--min-target-coverage", type=float, default=None, help="Minimum fraction of target genomes required for candidate primers (0.0 - 1.0, default: 1.0 = 100%)")
+    parser.add_argument("--min-target-coverage", type=float, default=None, help="Minimum fraction of target genomes required for candidate primers (0.0 - 1.0, default: 1.0 = 100%%)")
     parser.add_argument("--min-targets-count", type=int, default=None, help="Minimum count of target genomes required for candidate primers (overrides coverage fraction)")
     parser.add_argument("--max-target-mismatches", type=int, default=None, help="Maximum mismatches allowed when matching target genomes (default: 1)")
     parser.add_argument("--max-background-mismatches", type=int, default=None, help="Maximum mismatches allowed before treating alignment as background hit (default: 2)")
