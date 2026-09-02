@@ -2,7 +2,7 @@
     "metadata": {
         "tool": "NextLAMP",
         "version": "1.0.0",
-        "timestamp": "2026-08-25T12:14:06.681403",
+        "timestamp": "2026-08-27T08:46:50.436697",
         "reproducibility": {
             "target_fasta": "/home/fabiano.menegidio/workdir/Omics/genomics/babesia/tests/data/target.fa",
             "target_fasta_sha256": "d38268fd5757b5f63d49c0f7015e69e28b936ce0f8ca194b61c4462c42bebb31",
@@ -15,13 +15,13 @@
             "target_fasta": "/home/fabiano.menegidio/workdir/Omics/genomics/babesia/tests/data/target.fa",
             "bowtie2_path": "/home/fabiano.menegidio/miniforge3/envs/humann3_env/bin/bowtie2",
             "index_prefix": "/home/fabiano.menegidio/workdir/Omics/genomics/babesia/tests/data/bt2_idx",
-            "targets": [
-                "CM098081.1"
-            ],
-            "backgrounds": [
-                "CM002034.1",
-                "CM002035.1"
-            ],
+            "targets": {
+                "CM098081.1": "CM098081.1"
+            },
+            "backgrounds": {
+                "CM002034.1": "CM002034.1",
+                "CM002035.1": "CM002035.1"
+            },
             "max_sets": 10,
             "min_gc": 30.0,
             "max_gc": 70.0,
@@ -43,12 +43,12 @@
             "threads": 4
         },
         "statistics": {
-            "raw_F3_B3": 49094,
-            "raw_F2_B2": 56680,
-            "raw_F1c_B1c": 67994,
-            "filt_F3_B3": 49090,
-            "filt_F2_B2": 56676,
-            "filt_F1c_B1c": 67994
+            "raw_F3_B3": 63406,
+            "raw_F2_B2": 73176,
+            "raw_F1c_B1c": 88894,
+            "filt_F3_B3": 63402,
+            "filt_F2_B2": 73172,
+            "filt_F1c_B1c": 88894
         },
         "designed_sets_count": 10
     },
@@ -60,7 +60,11 @@
                 "end": 22,
                 "strand": 1,
                 "tm": 56.866080405157675,
-                "gc": 40.909090909090914
+                "gc": 40.909090909090914,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "F2": {
                 "seq": "ACTACACCAGTGATGCCT",
@@ -68,7 +72,144 @@
                 "end": 40,
                 "strand": 1,
                 "tm": 56.562182055522214,
-                "gc": 50.0
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F1c": {
+                "seq": "TGTAAGCTATGAAACTGCGTTGAAAA",
+                "start": 82,
+                "end": 108,
+                "strand": -1,
+                "tm": 61.95709482255222,
+                "gc": 34.61538461538461,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B1c": {
+                "seq": "CGTTCACATTGTTCTCAGTCCTGTGT",
+                "start": 118,
+                "end": 144,
+                "strand": 1,
+                "tm": 65.2528683999189,
+                "gc": 46.15384615384615,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B2": {
+                "seq": "GAACTCATCATCAAGGTTGC",
+                "start": 166,
+                "end": 186,
+                "strand": -1,
+                "tm": 56.22743730532278,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B3": {
+                "seq": "CTCGATGAGCTGCAACAA",
+                "start": 202,
+                "end": 220,
+                "strand": -1,
+                "tm": 56.87881464752036,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "tm_balance": 0.3475,
+            "quality": "Excellent",
+            "target_coverage_count": 1,
+            "target_coverage_list": [
+                "CM098081.1"
+            ],
+            "LoopF": {
+                "seq": "CGGCAAATAGACAAAGAAGC",
+                "start": 62,
+                "end": 82,
+                "strand": -1,
+                "tm": 56.90508726553577,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "LoopB": {
+                "seq": "CGTTCACATTGTTCTCAGTC",
+                "start": 118,
+                "end": 138,
+                "strand": 1,
+                "tm": 56.2181084356032,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "rank": 1,
+            "elamp_metrics": {
+                "quality_score": 92.4,
+                "grade": "A+ (Optimal)",
+                "tm_balance": 0.35,
+                "diff_f3_b3": 0.01,
+                "diff_f2_b2": 0.33,
+                "diff_f1c_b1c": 3.3,
+                "deltag_3end": {
+                    "F3": -4.72,
+                    "B3": -4.89,
+                    "F2": -6.81,
+                    "B2": -6.13,
+                    "F1c": -4.3,
+                    "B1c": -5.78
+                },
+                "gc_clamp_3end": {
+                    "F3": 1,
+                    "B3": 1,
+                    "F2": 3,
+                    "B2": 3,
+                    "F1c": 1,
+                    "B1c": 2
+                }
+            },
+            "elamp_amplicon": {
+                "outer_size": 220,
+                "inner_size": 164
+            }
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "F1c": {
                 "seq": "GTTGAAAACGGCAAATAGACAAAGAA",
@@ -76,7 +217,676 @@
                 "end": 90,
                 "strand": -1,
                 "tm": 61.229475206282416,
-                "gc": 34.61538461538461
+                "gc": 34.61538461538461,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B1c": {
+                "seq": "TCATAGCTTACAAGATGTGTTGCGTT",
+                "start": 96,
+                "end": 122,
+                "strand": 1,
+                "tm": 63.23769696736758,
+                "gc": 38.46153846153847,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B2": {
+                "seq": "ATAAGTCCGAGAAATGCACA",
+                "start": 144,
+                "end": 164,
+                "strand": -1,
+                "tm": 56.35708804305517,
+                "gc": 40.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B3": {
+                "seq": "CGGAACTCATCATCAAGGTT",
+                "start": 168,
+                "end": 188,
+                "strand": -1,
+                "tm": 57.03175210623067,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "tm_balance": 0.3708,
+            "quality": "Excellent",
+            "target_coverage_count": 1,
+            "target_coverage_list": [
+                "CM098081.1"
+            ],
+            "LoopF": {
+                "seq": "AGGATCTCGCGCAGAGTT",
+                "start": 42,
+                "end": 60,
+                "strand": -1,
+                "tm": 59.91296317756132,
+                "gc": 55.55555555555556,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "LoopB": {
+                "seq": "CGTTCACATTGTTCTCAGTC",
+                "start": 118,
+                "end": 138,
+                "strand": 1,
+                "tm": 56.2181084356032,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "rank": 2,
+            "elamp_metrics": {
+                "quality_score": 94.9,
+                "grade": "A+ (Optimal)",
+                "tm_balance": 0.37,
+                "diff_f3_b3": 0.17,
+                "diff_f2_b2": 0.21,
+                "diff_f1c_b1c": 2.01,
+                "deltag_3end": {
+                    "F3": -4.72,
+                    "B3": -5.56,
+                    "F2": -6.81,
+                    "B2": -6.58,
+                    "F1c": -4.58,
+                    "B1c": -6.85
+                },
+                "gc_clamp_3end": {
+                    "F3": 1,
+                    "B3": 2,
+                    "F2": 3,
+                    "B2": 3,
+                    "F1c": 1,
+                    "B1c": 3
+                }
+            },
+            "elamp_amplicon": {
+                "outer_size": 188,
+                "inner_size": 142
+            }
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F1c": {
+                "seq": "TGTAAGCTATGAAACTGCGTTGAAAA",
+                "start": 82,
+                "end": 108,
+                "strand": -1,
+                "tm": 61.95709482255222,
+                "gc": 34.61538461538461,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B1c": {
+                "seq": "TTGTTCTCAGTCCTGTGTTGTG",
+                "start": 126,
+                "end": 148,
+                "strand": 1,
+                "tm": 60.36554941340347,
+                "gc": 45.45454545454545,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B2": {
+                "seq": "GGCGGAACTCATCATCAA",
+                "start": 172,
+                "end": 190,
+                "strand": -1,
+                "tm": 56.19304278731266,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B3": {
+                "seq": "CTCGATGAGCTGCAACAA",
+                "start": 202,
+                "end": 220,
+                "strand": -1,
+                "tm": 56.87881464752036,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "tm_balance": 0.3819,
+            "quality": "Excellent",
+            "target_coverage_count": 1,
+            "target_coverage_list": [
+                "CM098081.1"
+            ],
+            "LoopF": {
+                "seq": "CGGCAAATAGACAAAGAAGC",
+                "start": 62,
+                "end": 82,
+                "strand": -1,
+                "tm": 56.90508726553577,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "LoopB": {
+                "seq": "GAGATCCTGCGCTTCTTT",
+                "start": 52,
+                "end": 70,
+                "strand": 1,
+                "tm": 56.20720475865329,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "rank": 3,
+            "elamp_metrics": {
+                "quality_score": 95.7,
+                "grade": "A+ (Optimal)",
+                "tm_balance": 0.38,
+                "diff_f3_b3": 0.01,
+                "diff_f2_b2": 0.37,
+                "diff_f1c_b1c": 1.59,
+                "deltag_3end": {
+                    "F3": -4.72,
+                    "B3": -4.89,
+                    "F2": -6.81,
+                    "B2": -4.63,
+                    "F1c": -4.3,
+                    "B1c": -5.34
+                },
+                "gc_clamp_3end": {
+                    "F3": 1,
+                    "B3": 1,
+                    "F2": 3,
+                    "B2": 1,
+                    "F1c": 1,
+                    "B1c": 2
+                }
+            },
+            "elamp_amplicon": {
+                "outer_size": 220,
+                "inner_size": 168
+            }
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F1c": {
+                "seq": "GTTGAAAACGGCAAATAGACAAAGAA",
+                "start": 64,
+                "end": 90,
+                "strand": -1,
+                "tm": 61.229475206282416,
+                "gc": 34.61538461538461,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTC",
+                "start": 112,
+                "end": 134,
+                "strand": 1,
+                "tm": 60.549555473870896,
+                "gc": 45.45454545454545,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B2": {
+                "seq": "CGGAACTCATCATCAAGGTT",
+                "start": 168,
+                "end": 188,
+                "strand": -1,
+                "tm": 57.03175210623067,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B3": {
+                "seq": "CTCGATGAGCTGCAACAA",
+                "start": 202,
+                "end": 220,
+                "strand": -1,
+                "tm": 56.87881464752036,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "tm_balance": 0.4823,
+            "quality": "Excellent",
+            "target_coverage_count": 1,
+            "target_coverage_list": [
+                "CM098081.1"
+            ],
+            "LoopF": {
+                "seq": "AGGATCTCGCGCAGAGTT",
+                "start": 42,
+                "end": 60,
+                "strand": -1,
+                "tm": 59.91296317756132,
+                "gc": 55.55555555555556,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "LoopB": {
+                "seq": "TTGTTCTCAGTCCTGTGTTG",
+                "start": 126,
+                "end": 146,
+                "strand": 1,
+                "tm": 57.110980450982936,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "rank": 4,
+            "elamp_metrics": {
+                "quality_score": 97.2,
+                "grade": "A+ (Optimal)",
+                "tm_balance": 0.48,
+                "diff_f3_b3": 0.01,
+                "diff_f2_b2": 0.47,
+                "diff_f1c_b1c": 0.68,
+                "deltag_3end": {
+                    "F3": -4.72,
+                    "B3": -4.89,
+                    "F2": -6.81,
+                    "B2": -5.56,
+                    "F1c": -4.58,
+                    "B1c": -4.88
+                },
+                "gc_clamp_3end": {
+                    "F3": 1,
+                    "B3": 1,
+                    "F2": 3,
+                    "B2": 2,
+                    "F1c": 1,
+                    "B1c": 2
+                }
+            },
+            "elamp_amplicon": {
+                "outer_size": 220,
+                "inner_size": 166
+            }
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F1c": {
+                "seq": "TGTAAGCTATGAAACTGCGTTGAAAA",
+                "start": 82,
+                "end": 108,
+                "strand": -1,
+                "tm": 61.95709482255222,
+                "gc": 34.61538461538461,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B1c": {
+                "seq": "TTGTTCTCAGTCCTGTGTTGTG",
+                "start": 126,
+                "end": 148,
+                "strand": 1,
+                "tm": 60.36554941340347,
+                "gc": 45.45454545454545,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B2": {
+                "seq": "ATGGCGGAACTCATCATC",
+                "start": 174,
+                "end": 192,
+                "strand": -1,
+                "tm": 55.93744552142164,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B3": {
+                "seq": "CTCGATGAGCTGCAACAA",
+                "start": 202,
+                "end": 220,
+                "strand": -1,
+                "tm": 56.87881464752036,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "tm_balance": 0.6375,
+            "quality": "Excellent",
+            "target_coverage_count": 1,
+            "target_coverage_list": [
+                "CM098081.1"
+            ],
+            "LoopF": {
+                "seq": "CGGCAAATAGACAAAGAAGC",
+                "start": 62,
+                "end": 82,
+                "strand": -1,
+                "tm": 56.90508726553577,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "LoopB": {
+                "seq": "GTGTTGTGCATTTCTCGG",
+                "start": 140,
+                "end": 158,
+                "strand": 1,
+                "tm": 55.917821524605756,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "rank": 5,
+            "elamp_metrics": {
+                "quality_score": 94.9,
+                "grade": "A+ (Optimal)",
+                "tm_balance": 0.64,
+                "diff_f3_b3": 0.01,
+                "diff_f2_b2": 0.62,
+                "diff_f1c_b1c": 1.59,
+                "deltag_3end": {
+                    "F3": -4.72,
+                    "B3": -4.89,
+                    "F2": -6.81,
+                    "B2": -4.93,
+                    "F1c": -4.3,
+                    "B1c": -5.34
+                },
+                "gc_clamp_3end": {
+                    "F3": 1,
+                    "B3": 1,
+                    "F2": 3,
+                    "B2": 2,
+                    "F1c": 1,
+                    "B1c": 2
+                }
+            },
+            "elamp_amplicon": {
+                "outer_size": 220,
+                "inner_size": 170
+            }
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCTAC",
+                "start": 22,
+                "end": 42,
+                "strand": 1,
+                "tm": 58.242501082834906,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F1c": {
+                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
+                "start": 82,
+                "end": 110,
+                "strand": -1,
+                "tm": 63.1261172088108,
+                "gc": 35.714285714285715,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
+                "start": 112,
+                "end": 136,
+                "strand": 1,
+                "tm": 62.94590057604802,
+                "gc": 45.83333333333333,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B2": {
+                "seq": "GCTCATGGCGGAACTCAT",
+                "start": 178,
+                "end": 196,
+                "strand": -1,
+                "tm": 58.96618201037518,
+                "gc": 55.55555555555556,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B3": {
+                "seq": "CTCGATGAGCTGCAACAA",
+                "start": 202,
+                "end": 220,
+                "strand": -1,
+                "tm": 56.87881464752036,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "tm_balance": 0.7364,
+            "quality": "Excellent",
+            "target_coverage_count": 1,
+            "target_coverage_list": [
+                "CM098081.1"
+            ],
+            "LoopF": {
+                "seq": "AGACAAAGAAGCGCAGGA",
+                "start": 56,
+                "end": 74,
+                "strand": -1,
+                "tm": 57.99844696279848,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "LoopB": {
+                "seq": "CAACGCAGTTTCATAGCTTACA",
+                "start": 86,
+                "end": 108,
+                "strand": 1,
+                "tm": 58.945629546126895,
+                "gc": 40.909090909090914,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "rank": 6,
+            "elamp_metrics": {
+                "quality_score": 97.4,
+                "grade": "A+ (Optimal)",
+                "tm_balance": 0.74,
+                "diff_f3_b3": 0.01,
+                "diff_f2_b2": 0.72,
+                "diff_f1c_b1c": 0.18,
+                "deltag_3end": {
+                    "F3": -4.72,
+                    "B3": -4.89,
+                    "F2": -5.14,
+                    "B2": -4.91,
+                    "F1c": -4.3,
+                    "B1c": -5.31
+                },
+                "gc_clamp_3end": {
+                    "F3": 1,
+                    "B3": 1,
+                    "F2": 3,
+                    "B2": 2,
+                    "F1c": 1,
+                    "B1c": 3
+                }
+            },
+            "elamp_amplicon": {
+                "outer_size": 220,
+                "inner_size": 174
+            }
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCT",
+                "start": 22,
+                "end": 40,
+                "strand": 1,
+                "tm": 56.562182055522214,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F1c": {
+                "seq": "GTTGAAAACGGCAAATAGACAAAGAA",
+                "start": 64,
+                "end": 90,
+                "strand": -1,
+                "tm": 61.229475206282416,
+                "gc": 34.61538461538461,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "B1c": {
                 "seq": "GCAGTTTCATAGCTTACAAGATGTGT",
@@ -84,7 +894,11 @@
                 "end": 116,
                 "strand": 1,
                 "tm": 61.84733092166334,
-                "gc": 38.46153846153847
+                "gc": 38.46153846153847,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "B2": {
                 "seq": "CCGAGAAATGCACAACAC",
@@ -92,7 +906,11 @@
                 "end": 158,
                 "strand": -1,
                 "tm": 55.91782152460581,
-                "gc": 50.0
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "B3": {
                 "seq": "CGGAACTCATCATCAAGGTT",
@@ -100,27 +918,71 @@
                 "end": 188,
                 "strand": -1,
                 "tm": 57.03175210623067,
-                "gc": 45.0
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "tm_balance": 0.81,
             "quality": "Excellent",
+            "target_coverage_count": 1,
+            "target_coverage_list": [
+                "CM098081.1"
+            ],
             "LoopF": {
-                "seq": "GCAGGATCTCGCGCAGAG",
-                "start": 44,
-                "end": 62,
+                "seq": "AGGATCTCGCGCAGAGTT",
+                "start": 42,
+                "end": 60,
                 "strand": -1,
-                "tm": 62.13387280226402,
-                "gc": 66.66666666666666
+                "tm": 59.91296317756132,
+                "gc": 55.55555555555556,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "LoopB": {
-                "seq": "TTCACATTGTTCTCAGTCCT",
-                "start": 120,
-                "end": 140,
+                "seq": "CTGCGCTTCTTTGTCTATTT",
+                "start": 58,
+                "end": 78,
                 "strand": 1,
-                "tm": 55.802319822519735,
-                "gc": 40.0
+                "tm": 55.872122643581235,
+                "gc": 40.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
-            "rank": 1
+            "rank": 7,
+            "elamp_metrics": {
+                "quality_score": 96.3,
+                "grade": "A+ (Optimal)",
+                "tm_balance": 0.81,
+                "diff_f3_b3": 0.17,
+                "diff_f2_b2": 0.64,
+                "diff_f1c_b1c": 0.62,
+                "deltag_3end": {
+                    "F3": -4.72,
+                    "B3": -5.56,
+                    "F2": -6.81,
+                    "B2": -5.33,
+                    "F1c": -4.58,
+                    "B1c": -5.78
+                },
+                "gc_clamp_3end": {
+                    "F3": 1,
+                    "B3": 2,
+                    "F2": 3,
+                    "B2": 2,
+                    "F1c": 1,
+                    "B1c": 2
+                }
+            },
+            "elamp_amplicon": {
+                "outer_size": 188,
+                "inner_size": 136
+            }
         },
         {
             "F3": {
@@ -129,7 +991,144 @@
                 "end": 22,
                 "strand": 1,
                 "tm": 56.866080405157675,
-                "gc": 40.909090909090914
+                "gc": 40.909090909090914,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F2": {
+                "seq": "ACTACACCAGTGATGCCTAC",
+                "start": 22,
+                "end": 42,
+                "strand": 1,
+                "tm": 58.242501082834906,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "F1c": {
+                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
+                "start": 82,
+                "end": 110,
+                "strand": -1,
+                "tm": 63.1261172088108,
+                "gc": 35.714285714285715,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B1c": {
+                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
+                "start": 112,
+                "end": 136,
+                "strand": 1,
+                "tm": 62.94590057604802,
+                "gc": 45.83333333333333,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B2": {
+                "seq": "TCATGGCGGAACTCATCA",
+                "start": 176,
+                "end": 194,
+                "strand": -1,
+                "tm": 57.41740919275912,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "B3": {
+                "seq": "CTCGATGAGCTGCAACAA",
+                "start": 202,
+                "end": 220,
+                "strand": -1,
+                "tm": 56.87881464752036,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "tm_balance": 0.8378,
+            "quality": "Excellent",
+            "target_coverage_count": 1,
+            "target_coverage_list": [
+                "CM098081.1"
+            ],
+            "LoopF": {
+                "seq": "AGACAAAGAAGCGCAGGA",
+                "start": 56,
+                "end": 74,
+                "strand": -1,
+                "tm": 57.99844696279848,
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "LoopB": {
+                "seq": "GTTGCGTTCACATTGTTCTC",
+                "start": 114,
+                "end": 134,
+                "strand": 1,
+                "tm": 57.42428549954627,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
+            },
+            "rank": 8,
+            "elamp_metrics": {
+                "quality_score": 97.1,
+                "grade": "A+ (Optimal)",
+                "tm_balance": 0.84,
+                "diff_f3_b3": 0.01,
+                "diff_f2_b2": 0.83,
+                "diff_f1c_b1c": 0.18,
+                "deltag_3end": {
+                    "F3": -4.72,
+                    "B3": -4.89,
+                    "F2": -5.14,
+                    "B2": -5.08,
+                    "F1c": -4.3,
+                    "B1c": -5.31
+                },
+                "gc_clamp_3end": {
+                    "F3": 1,
+                    "B3": 1,
+                    "F2": 3,
+                    "B2": 2,
+                    "F1c": 1,
+                    "B1c": 3
+                }
+            },
+            "elamp_amplicon": {
+                "outer_size": 220,
+                "inner_size": 172
+            }
+        },
+        {
+            "F3": {
+                "seq": "GAGCCTTACAGAGTCTAAAAGT",
+                "start": 0,
+                "end": 22,
+                "strand": 1,
+                "tm": 56.866080405157675,
+                "gc": 40.909090909090914,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "F2": {
                 "seq": "ACTACACCAGTGATGCCT",
@@ -137,7 +1136,11 @@
                 "end": 40,
                 "strand": 1,
                 "tm": 56.562182055522214,
-                "gc": 50.0
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "F1c": {
                 "seq": "GTTGAAAACGGCAAATAGACAAAGAA",
@@ -145,7 +1148,11 @@
                 "end": 90,
                 "strand": -1,
                 "tm": 61.229475206282416,
-                "gc": 34.61538461538461
+                "gc": 34.61538461538461,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "B1c": {
                 "seq": "GCAGTTTCATAGCTTACAAGATGTGT",
@@ -153,7 +1160,11 @@
                 "end": 116,
                 "strand": 1,
                 "tm": 61.84733092166334,
-                "gc": 38.46153846153847
+                "gc": 38.46153846153847,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "B2": {
                 "seq": "GTCCGAGAAATGCACAAC",
@@ -161,7 +1172,11 @@
                 "end": 160,
                 "strand": -1,
                 "tm": 55.60463513402658,
-                "gc": 50.0
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "B3": {
                 "seq": "CGGAACTCATCATCAAGGTT",
@@ -169,27 +1184,71 @@
                 "end": 188,
                 "strand": -1,
                 "tm": 57.03175210623067,
-                "gc": 45.0
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "tm_balance": 1.1232,
             "quality": "Excellent",
+            "target_coverage_count": 1,
+            "target_coverage_list": [
+                "CM098081.1"
+            ],
             "LoopF": {
-                "seq": "GCAGGATCTCGCGCAGAG",
-                "start": 44,
-                "end": 62,
+                "seq": "AGGATCTCGCGCAGAGTT",
+                "start": 42,
+                "end": 60,
                 "strand": -1,
-                "tm": 62.13387280226402,
-                "gc": 66.66666666666666
+                "tm": 59.91296317756132,
+                "gc": 55.55555555555556,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "LoopB": {
-                "seq": "TTCACATTGTTCTCAGTCCT",
-                "start": 120,
-                "end": 140,
+                "seq": "CAACGCAGTTTCATAGCTTA",
+                "start": 86,
+                "end": 106,
                 "strand": 1,
-                "tm": 55.802319822519735,
-                "gc": 40.0
+                "tm": 55.5982956395859,
+                "gc": 40.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
-            "rank": 2
+            "rank": 9,
+            "elamp_metrics": {
+                "quality_score": 95.4,
+                "grade": "A+ (Optimal)",
+                "tm_balance": 1.12,
+                "diff_f3_b3": 0.17,
+                "diff_f2_b2": 0.96,
+                "diff_f1c_b1c": 0.62,
+                "deltag_3end": {
+                    "F3": -4.72,
+                    "B3": -5.56,
+                    "F2": -6.81,
+                    "B2": -5.33,
+                    "F1c": -4.58,
+                    "B1c": -5.78
+                },
+                "gc_clamp_3end": {
+                    "F3": 1,
+                    "B3": 2,
+                    "F2": 3,
+                    "B2": 2,
+                    "F1c": 1,
+                    "B1c": 2
+                }
+            },
+            "elamp_amplicon": {
+                "outer_size": 188,
+                "inner_size": 138
+            }
         },
         {
             "F3": {
@@ -198,15 +1257,23 @@
                 "end": 22,
                 "strand": 1,
                 "tm": 56.866080405157675,
-                "gc": 40.909090909090914
+                "gc": 40.909090909090914,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
+                "seq": "TACACCAGTGATGCCTACAA",
+                "start": 24,
+                "end": 44,
                 "strand": 1,
-                "tm": 56.562182055522214,
-                "gc": 50.0
+                "tm": 57.77998907996971,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "F1c": {
                 "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
@@ -214,15 +1281,23 @@
                 "end": 110,
                 "strand": -1,
                 "tm": 63.1261172088108,
-                "gc": 35.714285714285715
+                "gc": 35.714285714285715,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "B1c": {
-                "seq": "GTGTTGCGTTCACATTGTTCTC",
+                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
                 "start": 112,
-                "end": 134,
+                "end": 136,
                 "strand": 1,
-                "tm": 60.549555473870896,
-                "gc": 45.45454545454545
+                "tm": 62.94590057604802,
+                "gc": 45.83333333333333,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "B2": {
                 "seq": "GAACTCATCATCAAGGTTGC",
@@ -230,518 +1305,83 @@
                 "end": 186,
                 "strand": -1,
                 "tm": 56.22743730532278,
-                "gc": 45.0
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
+                "seq": "CGATGAGCTGCAACAAAACA",
+                "start": 198,
                 "end": 218,
                 "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
+                "tm": 59.14432606912135,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
-            "tm_balance": 1.7112,
-            "quality": "Excellent",
-            "LoopF": {
-                "seq": "CGGCAAATAGACAAAGAAGC",
-                "start": 62,
-                "end": 82,
-                "strand": -1,
-                "tm": 56.90508726553577,
-                "gc": 45.0
-            },
-            "LoopB": {
-                "seq": "GTGTTGTGCATTTCTCGG",
-                "start": 140,
-                "end": 158,
-                "strand": 1,
-                "tm": 55.917821524605756,
-                "gc": 50.0
-            },
-            "rank": 3
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
-            },
-            "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
-                "strand": 1,
-                "tm": 56.562182055522214,
-                "gc": 50.0
-            },
-            "F1c": {
-                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
-                "start": 82,
-                "end": 110,
-                "strand": -1,
-                "tm": 63.1261172088108,
-                "gc": 35.714285714285715
-            },
-            "B1c": {
-                "seq": "GTGTTGCGTTCACATTGTTCTC",
-                "start": 112,
-                "end": 134,
-                "strand": 1,
-                "tm": 60.549555473870896,
-                "gc": 45.45454545454545
-            },
-            "B2": {
-                "seq": "GGCGGAACTCATCATCAA",
-                "start": 172,
-                "end": 190,
-                "strand": -1,
-                "tm": 56.19304278731266,
-                "gc": 50.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
-                "end": 218,
-                "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
-            },
-            "tm_balance": 1.7456,
-            "quality": "Excellent",
-            "LoopF": {
-                "seq": "CGGCAAATAGACAAAGAAGC",
-                "start": 62,
-                "end": 82,
-                "strand": -1,
-                "tm": 56.90508726553577,
-                "gc": 45.0
-            },
-            "LoopB": {
-                "seq": "GTGTTGTGCATTTCTCGG",
-                "start": 140,
-                "end": 158,
-                "strand": 1,
-                "tm": 55.917821524605756,
-                "gc": 50.0
-            },
-            "rank": 4
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
-            },
-            "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
-                "strand": 1,
-                "tm": 56.562182055522214,
-                "gc": 50.0
-            },
-            "F1c": {
-                "seq": "GTTGAAAACGGCAAATAGACAAAGAA",
-                "start": 64,
-                "end": 90,
-                "strand": -1,
-                "tm": 61.229475206282416,
-                "gc": 34.61538461538461
-            },
-            "B1c": {
-                "seq": "TGCGTTCACATTGTTCTCAGTCCTGT",
-                "start": 116,
-                "end": 142,
-                "strand": 1,
-                "tm": 66.68315775286862,
-                "gc": 46.15384615384615
-            },
-            "B2": {
-                "seq": "CGGAACTCATCATCAAGGTT",
-                "start": 168,
-                "end": 188,
-                "strand": -1,
-                "tm": 57.03175210623067,
-                "gc": 45.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
-                "end": 218,
-                "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
-            },
-            "tm_balance": 1.8461,
-            "quality": "Excellent",
-            "LoopF": {
-                "seq": "GCAGGATCTCGCGCAGAG",
-                "start": 44,
-                "end": 62,
-                "strand": -1,
-                "tm": 62.13387280226402,
-                "gc": 66.66666666666666
-            },
-            "LoopB": {
-                "seq": "GTTGTGCATTTCTCGGACTT",
-                "start": 142,
-                "end": 162,
-                "strand": 1,
-                "tm": 58.210387621423195,
-                "gc": 45.0
-            },
-            "rank": 5
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
-            },
-            "F2": {
-                "seq": "ACTACACCAGTGATGCCT",
-                "start": 22,
-                "end": 40,
-                "strand": 1,
-                "tm": 56.562182055522214,
-                "gc": 50.0
-            },
-            "F1c": {
-                "seq": "CTTGTAAGCTATGAAACTGCGTTGAAAA",
-                "start": 82,
-                "end": 110,
-                "strand": -1,
-                "tm": 63.1261172088108,
-                "gc": 35.714285714285715
-            },
-            "B1c": {
-                "seq": "GTGTTGCGTTCACATTGTTCTC",
-                "start": 112,
-                "end": 134,
-                "strand": 1,
-                "tm": 60.549555473870896,
-                "gc": 45.45454545454545
-            },
-            "B2": {
-                "seq": "ATGGCGGAACTCATCATC",
-                "start": 174,
-                "end": 192,
-                "strand": -1,
-                "tm": 55.93744552142164,
-                "gc": 50.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
-                "end": 218,
-                "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
-            },
-            "tm_balance": 2.0012,
+            "tm_balance": 3.8308,
             "quality": "Good",
-            "LoopF": {
-                "seq": "CGGCAAATAGACAAAGAAGC",
-                "start": 62,
-                "end": 82,
-                "strand": -1,
-                "tm": 56.90508726553577,
-                "gc": 45.0
-            },
-            "LoopB": {
-                "seq": "GTGTTGTGCATTTCTCGG",
-                "start": 140,
-                "end": 158,
-                "strand": 1,
-                "tm": 55.917821524605756,
-                "gc": 50.0
-            },
-            "rank": 6
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
-            },
-            "F2": {
-                "seq": "TACACCAGTGATGCCTACAA",
-                "start": 24,
-                "end": 44,
-                "strand": 1,
-                "tm": 57.77998907996971,
-                "gc": 45.0
-            },
-            "F1c": {
-                "seq": "TGTAAGCTATGAAACTGCGTTGAA",
-                "start": 84,
-                "end": 108,
-                "strand": -1,
-                "tm": 60.92657124963671,
-                "gc": 37.5
-            },
-            "B1c": {
-                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
-                "start": 112,
-                "end": 136,
-                "strand": 1,
-                "tm": 62.94590057604802,
-                "gc": 45.83333333333333
-            },
-            "B2": {
-                "seq": "CGGAACTCATCATCAAGGTT",
-                "start": 168,
-                "end": 188,
-                "strand": -1,
-                "tm": 57.03175210623067,
-                "gc": 45.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
-                "end": 218,
-                "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
-            },
-            "tm_balance": 2.1247,
-            "quality": "Good",
+            "target_coverage_count": 1,
+            "target_coverage_list": [
+                "CM098081.1"
+            ],
             "LoopF": {
                 "seq": "AGACAAAGAAGCGCAGGA",
                 "start": 56,
                 "end": 74,
                 "strand": -1,
                 "tm": 57.99844696279848,
-                "gc": 50.0
+                "gc": 50.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
             "LoopB": {
-                "seq": "TCCTGTGTTGTGCATTTCTC",
-                "start": 136,
-                "end": 156,
+                "seq": "CGTTCACATTGTTCTCAGTC",
+                "start": 118,
+                "end": 138,
                 "strand": 1,
-                "tm": 57.835703113337104,
-                "gc": 45.0
+                "tm": 56.2181084356032,
+                "gc": 45.0,
+                "matched_targets": [
+                    "CM098081.1"
+                ],
+                "matched_targets_count": 1
             },
-            "rank": 7
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
+            "rank": 10,
+            "elamp_metrics": {
+                "quality_score": 88.1,
+                "grade": "A (High Quality)",
+                "tm_balance": 3.83,
+                "diff_f3_b3": 2.28,
+                "diff_f2_b2": 1.55,
+                "diff_f1c_b1c": 0.18,
+                "deltag_3end": {
+                    "F3": -4.72,
+                    "B3": -4.89,
+                    "F2": -4.47,
+                    "B2": -6.13,
+                    "F1c": -4.3,
+                    "B1c": -5.31
+                },
+                "gc_clamp_3end": {
+                    "F3": 1,
+                    "B3": 1,
+                    "F2": 1,
+                    "B2": 3,
+                    "F1c": 1,
+                    "B1c": 3
+                }
             },
-            "F2": {
-                "seq": "TACACCAGTGATGCCTACAA",
-                "start": 24,
-                "end": 44,
-                "strand": 1,
-                "tm": 57.77998907996971,
-                "gc": 45.0
-            },
-            "F1c": {
-                "seq": "TGTAAGCTATGAAACTGCGTTGAA",
-                "start": 84,
-                "end": 108,
-                "strand": -1,
-                "tm": 60.92657124963671,
-                "gc": 37.5
-            },
-            "B1c": {
-                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
-                "start": 112,
-                "end": 136,
-                "strand": 1,
-                "tm": 62.94590057604802,
-                "gc": 45.83333333333333
-            },
-            "B2": {
-                "seq": "GAACTCATCATCAAGGTTGC",
-                "start": 166,
-                "end": 186,
-                "strand": -1,
-                "tm": 56.22743730532278,
-                "gc": 45.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
-                "end": 218,
-                "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
-            },
-            "tm_balance": 2.929,
-            "quality": "Good",
-            "LoopF": {
-                "seq": "AGACAAAGAAGCGCAGGA",
-                "start": 56,
-                "end": 74,
-                "strand": -1,
-                "tm": 57.99844696279848,
-                "gc": 50.0
-            },
-            "LoopB": {
-                "seq": "GTGTTGTGCATTTCTCGG",
-                "start": 140,
-                "end": 158,
-                "strand": 1,
-                "tm": 55.917821524605756,
-                "gc": 50.0
-            },
-            "rank": 8
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
-            },
-            "F2": {
-                "seq": "TACACCAGTGATGCCTACAA",
-                "start": 24,
-                "end": 44,
-                "strand": 1,
-                "tm": 57.77998907996971,
-                "gc": 45.0
-            },
-            "F1c": {
-                "seq": "TGTAAGCTATGAAACTGCGTTGAA",
-                "start": 84,
-                "end": 108,
-                "strand": -1,
-                "tm": 60.92657124963671,
-                "gc": 37.5
-            },
-            "B1c": {
-                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
-                "start": 112,
-                "end": 136,
-                "strand": 1,
-                "tm": 62.94590057604802,
-                "gc": 45.83333333333333
-            },
-            "B2": {
-                "seq": "GGCGGAACTCATCATCAA",
-                "start": 172,
-                "end": 190,
-                "strand": -1,
-                "tm": 56.19304278731266,
-                "gc": 50.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
-                "end": 218,
-                "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
-            },
-            "tm_balance": 2.9634,
-            "quality": "Good",
-            "LoopF": {
-                "seq": "AGACAAAGAAGCGCAGGA",
-                "start": 56,
-                "end": 74,
-                "strand": -1,
-                "tm": 57.99844696279848,
-                "gc": 50.0
-            },
-            "LoopB": {
-                "seq": "GTGTTGTGCATTTCTCGG",
-                "start": 140,
-                "end": 158,
-                "strand": 1,
-                "tm": 55.917821524605756,
-                "gc": 50.0
-            },
-            "rank": 9
-        },
-        {
-            "F3": {
-                "seq": "GAGCCTTACAGAGTCTAAAAGT",
-                "start": 0,
-                "end": 22,
-                "strand": 1,
-                "tm": 56.866080405157675,
-                "gc": 40.909090909090914
-            },
-            "F2": {
-                "seq": "TACACCAGTGATGCCTACAA",
-                "start": 24,
-                "end": 44,
-                "strand": 1,
-                "tm": 57.77998907996971,
-                "gc": 45.0
-            },
-            "F1c": {
-                "seq": "TGTAAGCTATGAAACTGCGTTGAA",
-                "start": 84,
-                "end": 108,
-                "strand": -1,
-                "tm": 60.92657124963671,
-                "gc": 37.5
-            },
-            "B1c": {
-                "seq": "GTGTTGCGTTCACATTGTTCTCAG",
-                "start": 112,
-                "end": 136,
-                "strand": 1,
-                "tm": 62.94590057604802,
-                "gc": 45.83333333333333
-            },
-            "B2": {
-                "seq": "ATGGCGGAACTCATCATC",
-                "start": 174,
-                "end": 192,
-                "strand": -1,
-                "tm": 55.93744552142164,
-                "gc": 50.0
-            },
-            "B3": {
-                "seq": "CGATGAGCTGCAACAAAA",
-                "start": 200,
-                "end": 218,
-                "strand": -1,
-                "tm": 55.48959081993564,
-                "gc": 44.44444444444444
-            },
-            "tm_balance": 3.219,
-            "quality": "Good",
-            "LoopF": {
-                "seq": "AGACAAAGAAGCGCAGGA",
-                "start": 56,
-                "end": 74,
-                "strand": -1,
-                "tm": 57.99844696279848,
-                "gc": 50.0
-            },
-            "LoopB": {
-                "seq": "GTGTTGTGCATTTCTCGG",
-                "start": 140,
-                "end": 158,
-                "strand": 1,
-                "tm": 55.917821524605756,
-                "gc": 50.0
-            },
-            "rank": 10
+            "elamp_amplicon": {
+                "outer_size": 218,
+                "inner_size": 162
+            }
         }
     ]
 }
